@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>발걸음 성과 아카이브</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Nanum+Pen+Script&display=swap">
+<style>
+/* Layout: 아스팔트 띠(서막·됩니다) → 밝은 본문(한눈에 → 길잡이 → 발자국 → 발걸음) → 아스팔트 띠(맺음). 차선 노랑 하나만 강조색 */
+:root {
+  --bg: #f3f5f2;
+  --surface: #ffffff;
+  --ink: #1a1e22;
+  --muted: #5d6670;
+  --line: #d9ded8;
+  --asphalt: #262b30;
+  --asphalt-2: #31373d;
+  --on-asphalt: #eef0ec;
+  --on-asphalt-muted: #a7aeb5;
+  --lane: #f2c230;
+  --lane-ink: #7a5a00;
+  --paper: #f4ecd8;
+  --paper-ink: #3b2f1c;
+  --done: #2f9e6e;
+  --doing: #d9801a;
+  --todo: #8a8f96;
+  --shadow: 0 1px 2px rgba(20,24,28,.06), 0 6px 20px rgba(20,24,28,.06);
+  --f-display: "Do Hyeon", "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-hand: "Nanum Pen Script", "IBM Plex Sans KR", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15181b; --surface: #1d2125; --ink: #e9ece8; --muted: #a2aab2; --line: #30363c;
+    --lane-ink: #f2c230; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15181b; --surface: #1d2125; --ink: #e9ece8; --muted: #a2aab2; --line: #30363c;
+  --lane-ink: #f2c230; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.65; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--asphalt); }
+a { color: inherit; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-size: 13px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+:focus-visible { outline: 3px solid var(--lane); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- 상단 내비 ---------- */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--asphalt); border-bottom: 1px solid #000; }
+.nav .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; overflow-x: auto; scrollbar-width: none; }
+.nav .brand { font-family: var(--f-display); color: var(--lane); font-size: 20px; white-space: nowrap; text-decoration: none; }
+.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav a.chip { display: block; padding: 6px 12px; border-radius: 999px; color: var(--on-asphalt-muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
+.nav a.chip:hover { color: var(--on-asphalt); background: var(--asphalt-2); }
+
+/* ---------- 서막: 페르마 ---------- */
+.band { background: var(--asphalt); color: var(--on-asphalt); }
+.hero .wrap { padding-block: 56px 40px; display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; align-items: center; padding-block: 88px 64px; } }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 7vw, 60px); line-height: 1.15; }
+.hero h1 .strike { position: relative; color: var(--on-asphalt-muted); }
+.hero .answer { font-family: var(--f-display); font-size: clamp(30px, 6vw, 52px); line-height: 1.2; color: var(--lane); margin-top: 10px; }
+.hero .about { margin-top: 22px; color: var(--on-asphalt-muted); max-width: 34em; font-size: 15px; }
+.hero .about b { color: var(--on-asphalt); font-weight: 500; }
+.hero .lead { margin-top: 18px; max-width: 34em; color: var(--on-asphalt); }
+
+/* 책 여백 카드 */
+.page { background: var(--paper); color: var(--paper-ink); border-radius: 4px; display: grid; grid-template-columns: 1fr 34%; min-height: 260px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: rotate(-1.2deg); max-width: 460px; justify-self: center; width: 100%; }
+.page .text { padding: 22px 18px; font-size: 11px; line-height: 1.9; color: #7d6e55; border-right: 1px dashed #c8b894; }
+.page .text .ln { display: block; height: 6px; margin: 9px 0; background: #d9ccad; border-radius: 3px; }
+.page .text .ln.s { width: 70%; }
+.page .text .eq { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 17px; color: var(--paper-ink); margin: 14px 0; display: block; }
+.page .margin { padding: 18px 12px; font-family: var(--f-hand); font-size: 19px; line-height: 1.25; color: #5a3d1c; position: relative; }
+.page .margin small { display: block; font-family: var(--f-body); font-size: 10px; color: #8a7a5e; margin-top: 10px; line-height: 1.5; }
+.page .margin .lat { font-family: Georgia, serif; font-style: italic; font-size: 11px; color: #8a7a5e; display: block; margin-top: 8px; line-height: 1.4; }
+
+/* ---------- 됩니다 ---------- */
+.can .wrap { padding-block: 24px 72px; }
+.can-list { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; display: grid; gap: 4px; }
+.can-list::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 6px; background: repeating-linear-gradient(to bottom, var(--lane) 0 22px, transparent 22px 36px); border-radius: 3px; }
+.can-list a { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 14px; text-decoration: none; font-family: var(--f-display); font-size: clamp(30px, 7.5vw, 64px); line-height: 1.25; color: var(--on-asphalt-muted); transition: color .25s; }
+.can-list a .yes { color: var(--on-asphalt); transition: color .25s; }
+.can-list a .note { font-family: var(--f-body); font-size: 14px; color: var(--on-asphalt-muted); }
+.can-list a:hover, .can-list a.lit { color: var(--on-asphalt); }
+.can-list a:hover .yes, .can-list a.lit .yes { color: var(--lane); }
+.can-list li.final a { color: var(--on-asphalt); margin-top: 18px; }
+.can-list li.final .yes { color: var(--lane); }
+.can .caption { margin-top: 26px; color: var(--on-asphalt-muted); font-size: 15px; max-width: 36em; }
+
+/* ---------- 본문 공통 ---------- */
+section.block { padding-block: 64px 8px; scroll-margin-top: 64px; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 44em; }
+.sec-head h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(30px, 5vw, 42px); line-height: 1.2; }
+.sec-head h2 .for { font-family: var(--f-body); font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 8px; vertical-align: middle; }
+.sec-head p { color: var(--muted); }
+.kicker { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; letter-spacing: .06em; color: var(--lane-ink); }
+.kicker::before { content: ""; width: 18px; height: 4px; background: var(--lane); border-radius: 2px; }
+
+/* 상태 표시 */
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.done { color: var(--done); } .pill.doing { color: var(--doing); } .pill.todo { color: var(--todo); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+
+/* ---------- 한눈에 보기 ---------- */
+.map { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .map { grid-template-columns: 1fr 1fr; } .map .wide { grid-column: 1 / -1; } }
+.map-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; min-width: 0; }
+.map-card header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.map-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; }
+.map-card h3 small { font-family: var(--f-body); font-size: 14px; color: var(--muted); margin-left: 6px; }
+.map-card .sys { font-size: 15px; }
+.map-card .sys b { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--lane) 45%, transparent) 60%); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-btn { font: inherit; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.chip-btn:hover { border-color: var(--ink); }
+.chip-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
+.dot.done { background: var(--done); } .dot.doing { background: var(--doing); } .dot.todo { background: var(--todo); }
+.flow-arrow { text-align: center; font-family: var(--f-display); color: var(--muted); font-size: 18px; }
+.map .wide { background: var(--asphalt); color: var(--on-asphalt); border-color: var(--asphalt); }
+.map .wide h3 small, .map .wide .sys { color: var(--on-asphalt-muted); }
+.map .wide .sys b { color: var(--on-asphalt); }
+.map .wide .chip-btn { background: var(--asphalt-2); color: var(--on-asphalt); border-color: #444b52; }
+
+/* ---------- 길잡이: 강서올인원 폰 목업 ---------- */
+.split { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 860px) { .split { grid-template-columns: 340px 1fr; } }
+.phone { width: 100%; max-width: 320px; margin: 0 auto; background: #111; border-radius: 34px; padding: 12px; box-shadow: var(--shadow); }
+.phone .screen { background: #fbfbf8; color: #1a1e22; border-radius: 24px; overflow: hidden; }
+.phone .bar { background: var(--asphalt); color: #eef0ec; padding: 18px 16px 14px; }
+.phone .bar .t { font-family: var(--f-display); font-size: 24px; color: var(--lane); }
+.phone .bar .s { font-size: 12px; color: #a7aeb5; }
+.phone .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
+.tile { font: inherit; text-align: left; border: 1px solid #e3e6e1; background: #fff; color: #1a1e22; border-radius: 14px; padding: 12px 10px; cursor: pointer; display: grid; gap: 6px; min-height: 96px; align-content: space-between; }
+.tile:hover { border-color: #1a1e22; }
+.tile .ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: #f6efd6; color: #7a5a00; font-family: var(--f-display); font-size: 15px; }
+.tile .nm { font-size: 13px; font-weight: 700; line-height: 1.3; }
+.tile .st { font-size: 11px; color: #5d6670; display: flex; align-items: center; gap: 5px; }
+.phone .foot { font-size: 11px; color: #5d6670; text-align: center; padding: 0 12px 14px; }
+.callout { font-family: var(--f-hand); font-size: 28px; line-height: 1.3; color: var(--lane-ink); }
+.points { display: grid; gap: 14px; }
+.point { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; }
+.point .n { width: 32px; height: 32px; border-radius: 50%; background: var(--asphalt); color: var(--lane); font-family: var(--f-display); display: grid; place-items: center; font-size: 17px; }
+.point h3 { font-size: 16px; font-weight: 700; }
+.point p { color: var(--muted); font-size: 15px; }
+
+/* ---------- 발자국: 2채널 ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: 1fr; counter-reset: s; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; position: relative; counter-increment: s; min-width: 0; }
+.steps li::before { content: counter(s); font-family: var(--f-display); font-size: 15px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--lane); color: #262b30; margin-bottom: 8px; }
+.steps li b { display: block; }
+.steps li span { color: var(--muted); font-size: 14px; }
+.steps li.ch { border-color: var(--ink); }
+.steps li .tag { position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 700; color: var(--lane-ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; padding: 3px; background: var(--surface); margin: 26px 0 14px; }
+.seg button { font: inherit; font-size: 14px; border: 0; background: none; color: var(--muted); padding: 7px 14px; border-radius: 8px; cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--asphalt); color: var(--on-asphalt); }
+.channel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .channel { grid-template-columns: 1fr 1fr; align-items: center; } }
+.channel .dev { border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 14px; font-size: 14px; display: grid; gap: 8px; }
+.channel .dev .row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; background: var(--surface); border-radius: 8px; border: 1px solid var(--line); }
+.channel .dev .row span:last-child { color: var(--muted); font-size: 12px; }
+.channel ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+.cards { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 28px; }
+@media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { font: inherit; text-align: left; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; cursor: pointer; display: grid; gap: 8px; min-width: 0; }
+.card:hover { border-color: var(--ink); }
+.card .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.card h3 { font-size: 17px; }
+.card p { color: var(--muted); font-size: 14px; }
+.card .more { font-size: 13px; font-weight: 700; color: var(--lane-ink); }
+
+/* 타임라인 미리보기 */
+.tl { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 6px; }
+.tl h3 { font-size: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.tl ol { list-style: none; margin: 14px 0 0; padding: 0 0 0 18px; border-left: 3px solid var(--line); }
+.tl li { position: relative; padding: 0 0 16px 14px; }
+.tl li::before { content: ""; position: absolute; left: -26px; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--surface); border: 3px solid var(--lane); }
+.tl time { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--muted); }
+.tl details summary { cursor: pointer; font-weight: 500; }
+.tl details p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+/* ---------- 발걸음 ---------- */
+.ripple { display: grid; gap: 10px; grid-template-columns: 1fr; margin-bottom: 28px; }
+@media (min-width: 760px) { .ripple { grid-template-columns: repeat(4, 1fr); } }
+.ripple div { border-radius: 12px; padding: 14px 16px; border: 1px solid var(--line); background: var(--surface); }
+.ripple div b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 22px; }
+.ripple div span { font-size: 13px; color: var(--muted); }
+.ripple div.on { background: var(--asphalt); color: var(--on-asphalt); border-color: var(--asphalt); }
+.ripple div.on span { color: var(--on-asphalt-muted); }
+.stats { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+@media (min-width: 760px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat { font: inherit; text-align: left; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; cursor: pointer; display: grid; gap: 4px; min-width: 0; }
+.stat:hover { border-color: var(--ink); }
+.stat .num { font-family: var(--f-display); font-size: 40px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat .num small { font-size: 18px; margin-left: 2px; }
+.stat .lb { font-weight: 700; font-size: 15px; }
+.stat .sub { color: var(--muted); font-size: 13px; }
+.blank { color: var(--todo); }
+
+/* ---------- 맺음 ---------- */
+.close .wrap { padding-block: 64px; display: grid; gap: 18px; }
+.close .big { font-family: var(--f-display); font-size: clamp(28px, 5.5vw, 46px); line-height: 1.25; }
+.close .big em { font-style: normal; color: var(--lane); }
+.close .meta { color: var(--on-asphalt-muted); font-size: 14px; display: grid; gap: 4px; }
+.members { display: flex; flex-wrap: wrap; gap: 6px; }
+.members span { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--asphalt-2); color: var(--on-asphalt); }
+
+/* ---------- 상세 다이얼로그 ---------- */
+dialog { border: 0; padding: 0; border-radius: 18px; width: min(560px, calc(100% - 32px)); max-height: calc(100% - 48px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+dialog::backdrop { background: rgba(15,18,21,.55); }
+.dlg { display: grid; gap: 16px; padding: 22px; }
+.dlg header { display: grid; gap: 6px; }
+.dlg .crumb { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.dlg h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; line-height: 1.2; }
+.dlg dl { margin: 0; display: grid; gap: 12px; }
+.dlg dt { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
+.dlg dd { margin: 2px 0 0; }
+.shot { border: 2px dashed var(--line); border-radius: 12px; aspect-ratio: 16 / 9; max-width: 100%; display: grid; place-items: center; color: var(--muted); font-size: 14px; text-align: center; padding: 10px; }
+.fill { display: inline-block; border-bottom: 2px dashed var(--todo); color: var(--todo); padding: 0 4px; }
+.dlg .x { justify-self: end; font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 10px; padding: 8px 16px; cursor: pointer; }
+.dlg .tools { display: flex; flex-wrap: wrap; gap: 6px; }
+.dlg .tools span { font-size: 12px; padding: 3px 9px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+
+<nav class="nav" aria-label="섹션 이동">
+  <div class="wrap">
+    <a class="brand" href="#top">발걸음</a>
+    <ul>
+      <li><a class="chip" href="#map">한눈에</a></li>
+      <li><a class="chip" href="#gil">길잡이</a></li>
+      <li><a class="chip" href="#bal">발자국</a></li>
+      <li><a class="chip" href="#step">발걸음</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 서막 -->
+<header class="band hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow" style="color:var(--on-asphalt-muted)">강서운전면허시험장 직무개발 동아리 · 결과보고서 붙임</p>
+      <h1 style="margin-top:14px"><span class="strike">페르마는 여백이 부족해<br>증명을 적지 못했습니다.</span></h1>
+      <p class="answer">AI 시대의 우리는,<br>그럴 일 없습니다.</p>
+      <p class="about"><b>페르마의 마지막 정리</b> · 17세기 수학자 페르마는 책 여백에 “놀라운 증명을 찾았지만 여백이 좁아 적지 않는다”는 메모만 남겼습니다. 이 한 줄 때문에 수학자들은 350여 년 동안 증명을 찾아야 했고, 1994년에야 풀렸습니다.</p>
+      <p class="lead">보고서 한 장의 여백에 다 담지 못한 동아리 ‘발걸음’의 결과물을 이곳에 모두 적었습니다.</p>
+    </div>
+    <figure class="page" aria-label="페르마가 남긴 여백 메모를 재현한 그림" style="margin:0">
+      <div class="text" aria-hidden="true">
+        <span class="ln"></span><span class="ln s"></span><span class="ln"></span>
+        <span class="eq">xⁿ + yⁿ = zⁿ</span>
+        <span class="ln"></span><span class="ln"></span><span class="ln s"></span><span class="ln"></span><span class="ln s"></span>
+      </div>
+      <figcaption class="margin">나는 이에 대한 놀라운 증명을 찾았다. 그러나 이 여백이 너무 좁아 적지 않는다.
+        <span class="lat">Hanc marginis exiguitas non caperet.</span>
+        <small>— 피에르 드 페르마, 1637년경<br>디오판토스 『산술』 여백 메모</small>
+      </figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- 됩니다 -->
+<section class="band can" aria-label="AI로 해본 것들">
+  <div class="wrap">
+    <ul class="can-list" id="canList">
+      <li><a href="#gil" data-open="g1">게임도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#gil">웹페이지도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#bal">시스템도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#bal" data-open="f1">시각자료도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#gil" data-open="g3">음악도 <span class="yes">됩니다.</span> <span class="note">(곧)</span></a></li>
+      <li class="final"><a href="#map">AI와 함께라면, 대리도 <span class="yes">됩니다.</span></a></li>
+    </ul>
+    <p class="caption">코딩을 배운 적 없는 현장 직원들이 생성형 AI로 직접 기획하고, 만들고, 고쳤습니다. 각 줄을 누르면 해당 결과물로 이동합니다.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- 한눈에 -->
+  <section class="block" id="map">
+    <div class="sec-head">
+      <span class="kicker">한눈에 보기</span>
+      <h2>두 개의 시스템, 하나의 발걸음</h2>
+      <p>민원인을 위한 <b>길잡이</b>와 직원을 위한 <b>발자국</b>은 각각 흩어진 결과물을 하나로 묶는 시스템입니다. 둘에서 잘된 것이 공단으로 퍼져 나가는 것이 <b>발걸음</b>입니다. 항목을 누르면 상세 내용이 열립니다.</p>
+      <div class="legend"><span class="pill done">완료</span><span class="pill doing">추진중</span><span class="pill todo">작업 전</span></div>
+    </div>
+    <div class="map">
+      <article class="map-card">
+        <header><h3>길잡이<small>민원인을 위한</small></h3><span class="eyebrow" id="cntG"></span></header>
+        <p class="sys">시스템 · <b>강서올인원</b> 한 페이지에 민원인용 도구를 모두 모음</p>
+        <div class="chips" data-group="gil"></div>
+      </article>
+      <article class="map-card">
+        <header><h3>발자국<small>직원을 위한</small></h3><span class="eyebrow" id="cntF"></span></header>
+        <p class="sys">시스템 · <b>노션 1차 + 업무망 HTML 2차</b> 2채널 공유</p>
+        <div class="chips" data-group="bal"></div>
+      </article>
+      <article class="map-card wide">
+        <header><h3>발걸음<small>공단으로 퍼지는</small></h3></header>
+        <p class="sys">길잡이와 발자국에서 잘된 것을 <b>직무개선·제안 제도</b>로 공단에 제출</p>
+        <div class="chips" data-group="step"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 길잡이 -->
+  <section class="block" id="gil">
+    <div class="sec-head">
+      <span class="kicker">세부과제 1</span>
+      <h2>길잡이<span class="for">민원인을 위한</span></h2>
+      <p>시험장 맞춤 안내를 따로따로 만들지 않고 <b>강서올인원</b> 한 페이지에 모았습니다. 민원인은 QR 하나로 대기 중에 필요한 것을 골라 씁니다.</p>
+    </div>
+    <div class="split">
+      <div class="phone" aria-label="강서올인원 화면 예시">
+        <div class="screen">
+          <div class="bar"><div class="t">강서올인원</div><div class="s">강서운전면허시험장 민원 안내</div></div>
+          <div class="grid" id="phoneGrid"></div>
+          <p class="foot">타일을 누르면 상세 내용이 열립니다</p>
+        </div>
+      </div>
+      <div class="points">
+        <p class="callout">“뭘 좋아하실지 몰라서<br>다 넣어봤어요.”</p>
+        <div class="point"><span class="n">1</span><div><h3>하나의 입구</h3><p>게임, 사진 점검, 안내문, CM송까지 QR 하나로 접속합니다. 새 도구가 생겨도 타일만 추가하면 됩니다.</p></div></div>
+        <div class="point"><span class="n">2</span><div><h3>대기시간을 안내 시간으로</h3><p>기다리는 동안 게임과 안내문으로 업무 순서를 미리 익혀, 창구에서 다시 묻는 일을 줄입니다.</p></div></div>
+        <div class="point"><span class="n">3</span><div><h3>외주 없이 직접 제작</h3><p>모든 도구를 동아리원이 생성형 AI로 만들고 현장 반응을 보며 바로 고쳤습니다.</p></div></div>
+        <p class="sub" style="color:var(--muted);font-size:14px">성과 · 접속 수 <span class="fill">작성 예정</span> · 단순 문의 감소 <span class="fill">작성 예정</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 발자국 -->
+  <section class="block" id="bal">
+    <div class="sec-head">
+      <span class="kicker">세부과제 2</span>
+      <h2>발자국<span class="for">직원을 위한</span></h2>
+      <p>구전되던 업무 지식을 기록으로 남기고, 휴대폰과 업무망 어디서든 같은 자료를 보도록 <b>2채널 공유 체계</b>를 만들었습니다.</p>
+    </div>
+    <ol class="steps">
+      <li><b>AI로 자료 제작</b><span>시각자료·타임라인·가이드라인을 생성형 AI로 작성</span></li>
+      <li class="ch"><span class="tag">1차 채널</span><b>노션 앱 공유</b><span>휴대폰에서 바로 열람, 수정 즉시 반영</span></li>
+      <li><b>HTML 내보내기</b><span>노션 원본 하나에서 그대로 변환, 이중 관리 없음</span></li>
+      <li class="ch"><span class="tag">2차 채널</span><b>업무망 공유</b><span>폐쇄망 PC에서도 내부 클라우드로 열람</span></li>
+    </ol>
+
+    <div class="seg" role="tablist" aria-label="채널 선택">
+      <button role="tab" id="tabMobile" aria-selected="true" data-ch="mobile">1차 · 휴대폰(노션)</button>
+      <button role="tab" id="tabPc" aria-selected="false" data-ch="pc">2차 · 업무망 PC</button>
+    </div>
+    <div class="channel" id="chMobile">
+      <div class="dev"><div class="row"><span>📱 노션 · 발자국 워크스페이스</span><span>실시간</span></div><div class="row"><span>업무 변경 타임라인</span><span>방금 수정</span></div><div class="row"><span>특수업무 가이드라인</span><span>열람</span></div></div>
+      <ul><li>출근길·휴직 중에도 휴대폰으로 변경 사항 확인</li><li>누구나 수정할 수 있는 위키 방식</li><li>이용 직원 수 <span class="fill">작성 예정</span></li></ul>
+    </div>
+    <div class="channel" id="chPc" hidden>
+      <div class="dev"><div class="row"><span>🖥️ 업무망 · 내부 클라우드</span><span>HTML</span></div><div class="row"><span>발자국_자료집.html</span><span>정기 갱신</span></div><div class="row"><span>창구 PC에서 바로 열기</span><span>오프라인</span></div></div>
+      <ul><li>외부망이 막힌 창구 PC에서도 같은 자료 열람</li><li>노션 원본에서 내보내므로 내용이 항상 동일</li><li>갱신 주기 <span class="fill">작성 예정</span></li></ul>
+    </div>
+
+    <div class="cards" id="balCards"></div>
+
+    <div class="tl">
+      <h3>업무 변경 타임라인 미리보기 <span class="pill todo">예시</span></h3>
+      <ol>
+        <li><time>20XX.XX</time><details><summary>규정 변경 항목 제목 <span class="fill">작성 예정</span></summary><p>변경 내용, 적용일, 창구 처리 방법, 근거 지침을 한 칸에 기록합니다.</p></details></li>
+        <li><time>20XX.XX</time><details><summary>지침 변경 항목 제목 <span class="fill">작성 예정</span></summary><p>최신 항목이 위로 쌓여 복직자·신규자가 위에서부터 읽으면 됩니다.</p></details></li>
+        <li><time>20XX.XX</time><details><summary>신규 도입 업무 <span class="fill">작성 예정</span></summary><p>새 업무의 통일된 처리 방식을 함께 남깁니다.</p></details></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 발걸음 -->
+  <section class="block" id="step" style="padding-bottom:64px">
+    <div class="sec-head">
+      <span class="kicker">세부과제 3</span>
+      <h2>발걸음<span class="for">공단으로 퍼지는</span></h2>
+      <p>시험장에서 잘된 것을 공단의 제도를 통해 밖으로 내보냈습니다. 동아리원 개개인의 걸음도 함께 기록합니다.</p>
+    </div>
+    <div class="ripple" aria-label="확산 단계">
+      <div class="on"><b>동아리</b><span>AI로 직접 제작·검증</span></div>
+      <div class="on"><b>강서시험장</b><span>현장 적용·피드백</span></div>
+      <div><b>전국 시험장</b><span>직무개선·제안으로 공유</span></div>
+      <div><b>공단</b><span>우수사례 확산</span></div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+</main>
+
+<!-- 맺음 -->
+<footer class="band close">
+  <div class="wrap">
+    <p class="big">페르마의 여백은 350년을 기다렸습니다.<br>우리의 여백은 <em>QR 하나</em>면 충분합니다.</p>
+    <div class="meta">
+      <span>동아리 발걸음 · AI 시대에 발맞추는 대리들의 걸음</span>
+      <span>도로교통공단 강서운전면허시험장 민원부 · 시험부 · 지원부</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <header>
+      <div class="crumb"><span id="dlgGroup"></span><span id="dlgPill"></span></div>
+      <h3 id="dlgTitle"></h3>
+    </header>
+    <div class="shot" id="dlgShot">화면 캡처 / 사진 자리</div>
+    <dl>
+      <div><dt>무엇을</dt><dd id="dlgWhat"></dd></div>
+      <div><dt>왜</dt><dd id="dlgWhy"></dd></div>
+      <div><dt>AI 활용</dt><dd><div class="tools" id="dlgTools"></div></dd></div>
+      <div><dt>성과</dt><dd id="dlgResult"></dd></div>
+    </dl>
+    <button class="x" id="dlgClose" type="button">닫기</button>
+  </div>
+</dialog>
+
+<script>
+// ===== 결과물 데이터: 이 배열만 고치면 지도·폰 화면·카드·상세창이 함께 바뀜 =====
+// status: done 완료 / doing 추진중 / todo 작업 전
+const FILL = '<span class="fill">작성 예정</span>';
+const ITEMS = [
+  // 길잡이 (강서올인원)
+  { id: 'g1', group: 'gil', icon: '게', name: '면허 모의 취득 게임', status: 'doing',
+    what: '대기시간에 도트 탐험형 게임으로 시험장을 돌아다니며 응시 절차를 익힙니다.',
+    why: '업무 순서를 몰라 창구를 여러 번 오가는 일을 줄이기 위해',
+    tools: ['생성형 AI 코딩', '웹 게임'], result: '플레이 수 ' + FILL },
+  { id: 'g2', group: 'gil', icon: '사', name: '면허증 사진 셀프 체크', status: 'doing',
+    what: '가져온 사진이 면허증 규격에 맞는지 민원인이 스스로 확인합니다.',
+    why: '사진 부적합으로 재촬영·재방문하는 경우를 줄이기 위해',
+    tools: ['생성형 AI 코딩', '이미지 판별'], result: '사용 수 ' + FILL },
+  { id: 'g3', group: 'gil', icon: '♪', name: '안전 CM송', status: 'todo',
+    what: '여러 위험을 경고하고, 적성검사를 연말 전에 받도록 알리는 노래입니다.',
+    why: '연말 적성검사 몰림을 분산하고 안전 메시지를 쉽게 기억시키기 위해',
+    tools: ['AI 작사', 'AI 작곡'], result: FILL },
+  { id: 'g4', group: 'gil', icon: '안', name: '민원인 선택 안내문', status: 'doing',
+    what: '1종→2종 자진축소와 시력미달 격하 비교, 모바일 면허증 IC·QR 방식 비교 등 A4 한 장 안내문입니다.',
+    why: '창구에서 반복 설명하던 선택지를 민원인이 먼저 읽고 고르도록',
+    tools: ['생성형 AI 작성', '디자인 도구'], result: '제작 건수 ' + FILL },
+  { id: 'g5', group: 'gil', icon: '外', name: '다국어 응시원서 안내', status: 'todo',
+    what: '언어를 고르면 해당 언어로 번역된 응시원서 안내로 연결됩니다.',
+    why: '외국인 민원인의 서식 작성 시간을 줄이기 위해',
+    tools: ['AI 번역'], result: FILL },
+  // 발자국 (2채널)
+  { id: 'f1', group: 'bal', icon: '시', name: '업무 시각자료', status: 'doing',
+    what: '복잡한 업무 흐름과 판단 기준을 한눈에 보이는 그림·표로 만듭니다.',
+    why: '말로 전하던 업무를 누구나 같은 방식으로 이해하도록',
+    tools: ['생성형 AI', '디자인 도구'], result: '제작 ' + FILL + '건' },
+  { id: 'f2', group: 'bal', icon: '연', name: '업무 변경 타임라인', status: 'doing',
+    what: '면허 규정·지침 변경을 최신순으로 쌓아 기록합니다.',
+    why: '휴직·복직자와 신규 직원이 바뀐 내용을 빠르게 따라잡도록',
+    tools: ['노션', '생성형 AI 요약'], result: '기록 ' + FILL + '건' },
+  { id: 'f3', group: 'bal', icon: '특', name: '특수업무 가이드라인', status: 'doing',
+    what: '국제·외국 면허, 수시 적성검사 등 자주 하지 않는 업무의 최소 처리 가이드입니다.',
+    why: '담당자가 없을 때도 기본 처리가 가능하도록',
+    tools: ['노션', '생성형 AI 정리'], result: '가이드 ' + FILL + '종' },
+  { id: 'f4', group: 'bal', icon: '규', name: '자주 묻는 관련 규정', status: 'doing',
+    what: '창구에서 자주 확인하는 규정을 질문 형태로 정리했습니다.',
+    why: '규정 원문을 찾는 시간을 줄이기 위해',
+    tools: ['노션', '생성형 AI 정리'], result: '항목 ' + FILL + '개' },
+  // 발걸음 (동아리원 활동)
+  { id: 's1', group: 'step', icon: '개', name: '직무 개선 제출', status: 'done', count: 4, unit: '건',
+    what: '동아리 결과물을 바탕으로 직무 개선 과제를 제출했습니다.',
+    why: '시험장 성과를 공단 차원의 개선으로 이어가기 위해',
+    tools: ['생성형 AI 문서 작성'], result: '4건 제출 · 채택 ' + FILL },
+  { id: 's2', group: 'step', icon: '제', name: '제안 제도 활용', status: 'done', count: null, unit: '건',
+    what: '공단 제안 제도를 통해 아이디어를 제출했습니다.',
+    why: '연 1회 이상 제안이라는 동아리 목표에 따라',
+    tools: ['생성형 AI 문서 작성'], result: FILL },
+  { id: 's3', group: 'step', icon: '표', name: '표어 제출', status: 'done', count: null, unit: '건',
+    what: '공단 표어 공모에 동아리원이 참여했습니다.',
+    why: '', tools: ['생성형 AI 아이디어'], result: FILL },
+  { id: 's4', group: 'step', icon: '청', name: '청렴대회 참가', status: 'done', count: null, unit: '회',
+    what: '청렴대회에 동아리원이 참가했습니다.',
+    why: '', tools: [], result: FILL },
+];
+const GROUP = { gil: '길잡이 · 강서올인원', bal: '발자국 · 2채널 공유', step: '발걸음 · 공단 확산' };
+const STATUS = { done: '완료', doing: '추진중', todo: '작업 전' };
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const pill = (st) => `<span class="pill ${st}">${STATUS[st]}</span>`;
+
+// 한눈에 보기 칩
+document.querySelectorAll('.chips').forEach((box) => {
+  box.innerHTML = ITEMS.filter((i) => i.group === box.dataset.group)
+    .map((i) => `<button class="chip-btn" type="button" data-open="${i.id}"><span class="dot ${i.status}"></span>${esc(i.name)}</button>`).join('');
+});
+const tally = (g) => { const a = ITEMS.filter((i) => i.group === g); return `${a.length}개 결과물 · 완료 ${a.filter((i) => i.status === 'done').length}`; };
+$('#cntG').textContent = tally('gil'); $('#cntF').textContent = tally('bal');
+
+// 강서올인원 폰 타일
+$('#phoneGrid').innerHTML = ITEMS.filter((i) => i.group === 'gil').map((i) =>
+  `<button class="tile" type="button" data-open="${i.id}"><span class="ic">${esc(i.icon)}</span><span class="nm">${esc(i.name)}</span><span class="st"><span class="dot ${i.status}" style="width:7px;height:7px;border-radius:50%;display:inline-block"></span>${STATUS[i.status]}</span></button>`).join('')
+  + `<button class="tile" type="button" disabled style="border-style:dashed;cursor:default"><span class="ic" style="background:#eee;color:#999">+</span><span class="nm" style="color:#8a8f96">다음 도구</span><span class="st">추가 예정</span></button>`;
+
+// 발자국 카드
+$('#balCards').innerHTML = ITEMS.filter((i) => i.group === 'bal').map((i) =>
+  `<button class="card" type="button" data-open="${i.id}"><span class="top"><h3>${esc(i.name)}</h3>${pill(i.status)}</span><p>${esc(i.what)}</p><span class="more">자세히 보기 →</span></button>`).join('');
+
+// 발걸음 숫자
+$('#stats').innerHTML = ITEMS.filter((i) => i.group === 'step').map((i) =>
+  `<button class="stat" type="button" data-open="${i.id}"><span class="num">${i.count ?? '<span class="blank">□</span>'}<small>${i.unit}</small></span><span class="lb">${esc(i.name)}</span><span class="sub">눌러서 내역 보기</span></button>`).join('');
+
+// 상세 다이얼로그
+const dlg = $('#dlg');
+function openItem(id) {
+  const i = ITEMS.find((x) => x.id === id); if (!i) return;
+  $('#dlgGroup').textContent = GROUP[i.group];
+  $('#dlgPill').innerHTML = pill(i.status);
+  $('#dlgTitle').textContent = i.name;
+  $('#dlgWhat').textContent = i.what;
+  $('#dlgWhy').textContent = i.why || '—';
+  $('#dlgTools').innerHTML = i.tools.length ? i.tools.map((t) => `<span>${esc(t)}</span>`).join('') : '—';
+  $('#dlgResult').innerHTML = i.result;
+  if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-open]');
+  if (b && !b.closest('.can-list')) { e.preventDefault(); openItem(b.dataset.open); }
+});
+$('#dlgClose').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+// 2채널 탭
+document.querySelectorAll('.seg button').forEach((btn) => btn.addEventListener('click', () => {
+  document.querySelectorAll('.seg button').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+  $('#chMobile').hidden = btn.dataset.ch !== 'mobile';
+  $('#chPc').hidden = btn.dataset.ch !== 'pc';
+}));
+
+// 됩니다: 한 줄씩 차례로 불이 들어옴 (모든 줄은 처음부터 보임)
+const lines = [...document.querySelectorAll('#canList li:not(.final) a')];
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let k = 0;
+  setInterval(() => { lines.forEach((a, j) => a.classList.toggle('lit', j === k)); k = (k + 1) % lines.length; }, 1300);
+}
+</script>
+
+</body>
+</html>
