@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>발걸음 성과 아카이브</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>발걸음 성과 별첨</title>
+<meta property="og:title" content="발걸음 성과 별첨">
+<meta property="og:description" content="강서운전면허시험장 직무개발 동아리 ‘발걸음’의 결과물을 직접 눌러서 써 볼 수 있는 페이지">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Nanum+Pen+Script&display=swap">
 <style>
-/* Layout: 아스팔트 띠(서막·됩니다) → 밝은 본문(한눈에 → 길잡이 → 발자국 → 발걸음) → 아스팔트 띠(맺음). 차선 노랑 하나만 강조색 */
+/* Layout: 아스팔트 띠(서막·됩니다) → 밝은 본문(한눈에 → 길잡이 → 발자국 → 발걸음) → 아스팔트 띠(맺음).
+   강조색은 차선 노랑 하나. 노란 ▶ 버튼은 "실제 결과물이 열린다"는 뜻으로만 쓴다. */
 :root {
   --bg: #f3f5f2;
   --surface: #ffffff;
@@ -23,222 +25,281 @@
   --on-asphalt-muted: #a7aeb5;
   --lane: #f2c230;
   --lane-ink: #7a5a00;
+  --on-lane: #262b30;
   --paper: #f4ecd8;
   --paper-ink: #3b2f1c;
-  --done: #2f9e6e;
-  --doing: #d9801a;
-  --todo: #8a8f96;
+  --doing: #b96a10;
+  --todo: #6f767d;
   --shadow: 0 1px 2px rgba(20,24,28,.06), 0 6px 20px rgba(20,24,28,.06);
   --f-display: "Do Hyeon", "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --f-hand: "Nanum Pen Script", "IBM Plex Sans KR", cursive;
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #15181b; --surface: #1d2125; --ink: #e9ece8; --muted: #a2aab2; --line: #30363c;
-    --lane-ink: #f2c230; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+    --lane-ink: #f2c230; --doing: #e7a04a; --todo: #9aa1a8;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #15181b; --surface: #1d2125; --ink: #e9ece8; --muted: #a2aab2; --line: #30363c;
-  --lane-ink: #f2c230; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+  --lane-ink: #f2c230; --doing: #e7a04a; --todo: #9aa1a8;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.65; }
+html { scroll-behavior: smooth; }
+html.locked { overflow: hidden; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.65; -webkit-text-size-adjust: 100%; word-break: keep-all; overflow-wrap: break-word; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--asphalt); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
 a { color: inherit; }
+button { font: inherit; color: inherit; }
 h1, h2, h3 { text-wrap: balance; margin: 0; }
-p { margin: 0; }
+p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
 .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.eyebrow { font-size: 13px; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
 :focus-visible { outline: 3px solid var(--lane); outline-offset: 2px; border-radius: 4px; }
+.eyebrow { font-size: 13px; letter-spacing: .06em; font-weight: 700; color: var(--muted); }
 
 /* ---------- 상단 내비 ---------- */
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--asphalt); border-bottom: 1px solid #000; }
 .nav .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; overflow-x: auto; scrollbar-width: none; }
 .nav .brand { font-family: var(--f-display); color: var(--lane); font-size: 20px; white-space: nowrap; text-decoration: none; }
-.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav ul { display: flex; gap: 4px; }
 .nav a.chip { display: block; padding: 6px 12px; border-radius: 999px; color: var(--on-asphalt-muted); text-decoration: none; font-size: 14px; white-space: nowrap; }
 .nav a.chip:hover { color: var(--on-asphalt); background: var(--asphalt-2); }
 
+/* ---------- 버튼 ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 18px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+.btn-run { background: var(--lane); color: var(--on-lane); }
+.btn-run:hover { filter: brightness(1.05); }
+.btn-run svg, .play svg { width: 12px; height: 14px; flex: none; fill: currentColor; }
+.btn-run.pending { background: transparent; color: var(--muted); border: 1px dashed var(--todo); cursor: default; font-weight: 500; }
+.btn-run.pending svg { display: none; }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); font-weight: 500; }
+.btn-ghost:hover { border-color: var(--ink); }
+
 /* ---------- 서막: 페르마 ---------- */
 .band { background: var(--asphalt); color: var(--on-asphalt); }
-.hero .wrap { padding-block: 56px 40px; display: grid; gap: 32px; grid-template-columns: 1fr; }
-@media (min-width: 860px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; align-items: center; padding-block: 88px 64px; } }
-.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 7vw, 60px); line-height: 1.15; }
-.hero h1 .strike { position: relative; color: var(--on-asphalt-muted); }
+.hero .wrap { padding-block: 52px 36px; display: grid; gap: 32px; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .hero .wrap { grid-template-columns: 1.25fr 1fr; align-items: center; padding-block: 84px 56px; } }
+.hero .eyebrow { color: var(--on-asphalt-muted); }
+.hero h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(32px, 6.6vw, 58px); line-height: 1.15; margin-top: 14px; color: var(--on-asphalt-muted); }
 .hero .answer { font-family: var(--f-display); font-size: clamp(30px, 6vw, 52px); line-height: 1.2; color: var(--lane); margin-top: 10px; }
 .hero .about { margin-top: 22px; color: var(--on-asphalt-muted); max-width: 34em; font-size: 15px; }
 .hero .about b { color: var(--on-asphalt); font-weight: 500; }
-.hero .lead { margin-top: 18px; max-width: 34em; color: var(--on-asphalt); }
-
-/* 책 여백 카드 */
-.page { background: var(--paper); color: var(--paper-ink); border-radius: 4px; display: grid; grid-template-columns: 1fr 34%; min-height: 260px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: rotate(-1.2deg); max-width: 460px; justify-self: center; width: 100%; }
-.page .text { padding: 22px 18px; font-size: 11px; line-height: 1.9; color: #7d6e55; border-right: 1px dashed #c8b894; }
+.hero .lead { margin-top: 16px; max-width: 34em; }
+.hero .cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.page { margin: 0; background: var(--paper); color: var(--paper-ink); border-radius: 4px; display: grid; grid-template-columns: 1fr 34%; min-height: 250px; box-shadow: 0 20px 40px rgba(0,0,0,.35); transform: rotate(-1.2deg); max-width: 440px; justify-self: center; width: 100%; }
+.page .text { padding: 22px 18px; border-right: 1px dashed #c8b894; }
 .page .text .ln { display: block; height: 6px; margin: 9px 0; background: #d9ccad; border-radius: 3px; }
 .page .text .ln.s { width: 70%; }
 .page .text .eq { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 17px; color: var(--paper-ink); margin: 14px 0; display: block; }
-.page .margin { padding: 18px 12px; font-family: var(--f-hand); font-size: 19px; line-height: 1.25; color: #5a3d1c; position: relative; }
+.page .margin { padding: 18px 12px; font-family: var(--f-hand); font-size: 19px; line-height: 1.25; color: #5a3d1c; }
 .page .margin small { display: block; font-family: var(--f-body); font-size: 10px; color: #8a7a5e; margin-top: 10px; line-height: 1.5; }
 .page .margin .lat { font-family: Georgia, serif; font-style: italic; font-size: 11px; color: #8a7a5e; display: block; margin-top: 8px; line-height: 1.4; }
 
 /* ---------- 됩니다 ---------- */
-.can .wrap { padding-block: 24px 72px; }
-.can-list { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; display: grid; gap: 4px; }
+.can .wrap { padding-block: 20px 64px; }
+.can .said { color: var(--on-asphalt-muted); font-size: 15px; margin-bottom: 18px; max-width: 36em; }
+.can-list { padding-left: 26px; position: relative; display: grid; gap: 2px; }
 .can-list::before { content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 6px; background: repeating-linear-gradient(to bottom, var(--lane) 0 22px, transparent 22px 36px); border-radius: 3px; }
-.can-list a { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 14px; text-decoration: none; font-family: var(--f-display); font-size: clamp(30px, 7.5vw, 64px); line-height: 1.25; color: var(--on-asphalt-muted); transition: color .25s; }
+.can-list a { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 14px; text-decoration: none; font-family: var(--f-display); font-size: clamp(30px, 7.4vw, 62px); line-height: 1.25; color: var(--on-asphalt-muted); transition: color .25s; }
 .can-list a .yes { color: var(--on-asphalt); transition: color .25s; }
-.can-list a .note { font-family: var(--f-body); font-size: 14px; color: var(--on-asphalt-muted); }
+.can-list a .aside { font-family: var(--f-body); font-size: 13px; color: var(--on-asphalt-muted); }
 .can-list a:hover, .can-list a.lit { color: var(--on-asphalt); }
 .can-list a:hover .yes, .can-list a.lit .yes { color: var(--lane); }
-.can-list li.final a { color: var(--on-asphalt); margin-top: 18px; }
+.can-list li.final a { color: var(--on-asphalt); margin-top: 16px; }
 .can-list li.final .yes { color: var(--lane); }
-.can .caption { margin-top: 26px; color: var(--on-asphalt-muted); font-size: 15px; max-width: 36em; }
 
 /* ---------- 본문 공통 ---------- */
-section.block { padding-block: 64px 8px; scroll-margin-top: 64px; }
-.sec-head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 44em; }
-.sec-head h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(30px, 5vw, 42px); line-height: 1.2; }
-.sec-head h2 .for { font-family: var(--f-body); font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 8px; vertical-align: middle; }
+section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
+.sec-head { display: grid; gap: 8px; margin-bottom: 8px; max-width: 46em; }
+.sec-head h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(32px, 5.4vw, 46px); line-height: 1.15; }
+.sec-head .lede { font-size: 18px; font-weight: 500; }
 .sec-head p { color: var(--muted); }
+.sec-head .lede { color: var(--ink); }
 .kicker { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; letter-spacing: .06em; color: var(--lane-ink); }
 .kicker::before { content: ""; width: 18px; height: 4px; background: var(--lane); border-radius: 2px; }
-
-/* 상태 표시 */
-.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
-.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-.pill.done { color: var(--done); } .pill.doing { color: var(--doing); } .pill.todo { color: var(--todo); }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 6px; font-size: 14px; color: var(--muted); }
+.facts b { color: var(--ink); font-weight: 700; margin-left: 6px; }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.tag.sys { color: var(--lane-ink); }
+.tag.item { color: var(--muted); }
+.tag.doing { color: var(--doing); }
+.tag.todo { color: var(--todo); }
 
 /* ---------- 한눈에 보기 ---------- */
-.map { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 820px) { .map { grid-template-columns: 1fr 1fr; } .map .wide { grid-column: 1 / -1; } }
-.map-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; min-width: 0; }
-.map-card header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.map-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; }
-.map-card h3 small { font-family: var(--f-body); font-size: 14px; color: var(--muted); margin-left: 6px; }
-.map-card .sys { font-size: 15px; }
-.map-card .sys b { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--lane) 45%, transparent) 60%); }
+.map { display: grid; gap: 14px; margin-top: 22px; }
+.map-row { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px 24px; grid-template-columns: 1fr; min-width: 0; }
+@media (min-width: 820px) { .map-row { grid-template-columns: 170px 190px 1fr 150px; align-items: start; } }
+.map-row h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; line-height: 1.1; }
+.map-row h3 small { display: block; font-family: var(--f-body); font-size: 13px; color: var(--muted); margin-top: 4px; }
+.map-row .lb { display: block; font-size: 12px; font-weight: 700; letter-spacing: .05em; color: var(--muted); margin-bottom: 4px; }
+.map-row .val { font-size: 15px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip-btn { font: inherit; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
-.chip-btn:hover { border-color: var(--ink); }
-.chip-btn .dot { width: 8px; height: 8px; border-radius: 50%; }
-.dot.done { background: var(--done); } .dot.doing { background: var(--doing); } .dot.todo { background: var(--todo); }
-.flow-arrow { text-align: center; font-family: var(--f-display); color: var(--muted); font-size: 18px; }
-.map .wide { background: var(--asphalt); color: var(--on-asphalt); border-color: var(--asphalt); }
-.map .wide h3 small, .map .wide .sys { color: var(--on-asphalt-muted); }
-.map .wide .sys b { color: var(--on-asphalt); }
-.map .wide .chip-btn { background: var(--asphalt-2); color: var(--on-asphalt); border-color: #444b52; }
+.chip-link { font-size: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); text-decoration: none; }
+.chip-link:hover { border-color: var(--ink); }
+.chip-link svg { width: 9px; height: 11px; fill: var(--lane-ink); flex: none; }
 
-/* ---------- 길잡이: 강서올인원 폰 목업 ---------- */
-.split { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
-@media (min-width: 860px) { .split { grid-template-columns: 340px 1fr; } }
-.phone { width: 100%; max-width: 320px; margin: 0 auto; background: #111; border-radius: 34px; padding: 12px; box-shadow: var(--shadow); }
-.phone .screen { background: #fbfbf8; color: #1a1e22; border-radius: 24px; overflow: hidden; }
-.phone .bar { background: var(--asphalt); color: #eef0ec; padding: 18px 16px 14px; }
-.phone .bar .t { font-family: var(--f-display); font-size: 24px; color: var(--lane); }
-.phone .bar .s { font-size: 12px; color: #a7aeb5; }
-.phone .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
-.tile { font: inherit; text-align: left; border: 1px solid #e3e6e1; background: #fff; color: #1a1e22; border-radius: 14px; padding: 12px 10px; cursor: pointer; display: grid; gap: 6px; min-height: 96px; align-content: space-between; }
-.tile:hover { border-color: #1a1e22; }
-.tile .ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; background: #f6efd6; color: #7a5a00; font-family: var(--f-display); font-size: 15px; }
-.tile .nm { font-size: 13px; font-weight: 700; line-height: 1.3; }
-.tile .st { font-size: 11px; color: #5d6670; display: flex; align-items: center; gap: 5px; }
-.phone .foot { font-size: 11px; color: #5d6670; text-align: center; padding: 0 12px 14px; }
-.callout { font-family: var(--f-hand); font-size: 28px; line-height: 1.3; color: var(--lane-ink); }
-.points { display: grid; gap: 14px; }
-.point { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; }
-.point .n { width: 32px; height: 32px; border-radius: 50%; background: var(--asphalt); color: var(--lane); font-family: var(--f-display); display: grid; place-items: center; font-size: 17px; }
-.point h3 { font-size: 16px; font-weight: 700; }
-.point p { color: var(--muted); font-size: 15px; }
+/* ---------- 결과물 카드 ---------- */
+.results { margin-top: 26px; }
+.result { display: grid; gap: 14px 32px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "media" "act" "desc" "why"; padding-block: 32px; border-top: 1px solid var(--line); scroll-margin-top: 60px; }
+@media (min-width: 820px) {
+  .result { grid-template-columns: 270px minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; grid-template-areas: "media head" "media act" "media desc" "media why"; }
+  .result.duo { grid-template-columns: 380px minmax(0, 1fr); }
+}
+.result:target .r-head h3 { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--lane) 55%, transparent) 62%); }
+.result > .r-head { grid-area: head; }
+.r-head { display: grid; gap: 6px; justify-items: start; }
+.r-head .quote { font-family: var(--f-hand); font-size: 27px; line-height: 1.2; color: var(--lane-ink); }
+.r-head h3 { font-size: 24px; line-height: 1.25; display: inline; }
+.result > .r-media { grid-area: media; }
+.r-media { display: flex; gap: 12px; justify-content: center; align-items: flex-start; }
+.result > .r-act { grid-area: act; }
+.r-act { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.r-act .hint { flex-basis: 100%; font-size: 13px; color: var(--muted); }
+.result > .r-desc { grid-area: desc; }
+.r-desc { display: grid; gap: 6px; max-width: 44em; }
+.r-desc li { padding-left: 16px; position: relative; }
+.r-desc li::before { content: ""; position: absolute; left: 2px; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--lane); }
+.r-desc b { font-weight: 700; }
+.inside { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.inside span { font-size: 13px; padding: 3px 10px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); }
+.result > .r-why { grid-area: why; align-self: start; }
 
-/* ---------- 발자국: 2채널 ---------- */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: 1fr; counter-reset: s; }
-@media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
-.steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; position: relative; counter-increment: s; min-width: 0; }
-.steps li::before { content: counter(s); font-family: var(--f-display); font-size: 15px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: var(--lane); color: #262b30; margin-bottom: 8px; }
-.steps li b { display: block; }
-.steps li span { color: var(--muted); font-size: 14px; }
-.steps li.ch { border-color: var(--ink); }
-.steps li .tag { position: absolute; top: 14px; right: 14px; font-size: 11px; font-weight: 700; color: var(--lane-ink); }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; padding: 3px; background: var(--surface); margin: 26px 0 14px; }
-.seg button { font: inherit; font-size: 14px; border: 0; background: none; color: var(--muted); padding: 7px 14px; border-radius: 8px; cursor: pointer; }
-.seg button[aria-selected="true"] { background: var(--asphalt); color: var(--on-asphalt); }
-.channel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 760px) { .channel { grid-template-columns: 1fr 1fr; align-items: center; } }
-.channel .dev { border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 14px; font-size: 14px; display: grid; gap: 8px; }
-.channel .dev .row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 10px; background: var(--surface); border-radius: 8px; border: 1px solid var(--line); }
-.channel .dev .row span:last-child { color: var(--muted); font-size: 12px; }
-.channel ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
-.cards { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 28px; }
-@media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
-.card { font: inherit; text-align: left; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; cursor: pointer; display: grid; gap: 8px; min-width: 0; }
-.card:hover { border-color: var(--ink); }
-.card .top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
-.card h3 { font-size: 17px; }
-.card p { color: var(--muted); font-size: 14px; }
-.card .more { font-size: 13px; font-weight: 700; color: var(--lane-ink); }
+/* 취지·활용·효과 접기 */
+details.why { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); max-width: 44em; }
+details.why summary { cursor: pointer; padding: 12px 16px; font-weight: 700; font-size: 15px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+details.why summary::-webkit-details-marker { display: none; }
+details.why summary::after { content: "+"; font-family: var(--f-display); font-size: 22px; line-height: 1; color: var(--lane-ink); }
+details.why[open] summary::after { content: "–"; }
+details.why dl { padding: 0 16px 14px; display: grid; gap: 10px; }
+details.why dt { font-size: 12px; font-weight: 700; letter-spacing: .05em; color: var(--lane-ink); }
+details.why dd { font-size: 15px; }
 
-/* 타임라인 미리보기 */
-.tl { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 6px; }
-.tl h3 { font-size: 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.tl ol { list-style: none; margin: 14px 0 0; padding: 0 0 0 18px; border-left: 3px solid var(--line); }
-.tl li { position: relative; padding: 0 0 16px 14px; }
-.tl li::before { content: ""; position: absolute; left: -26px; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--surface); border: 3px solid var(--lane); }
-.tl time { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--muted); }
-.tl details summary { cursor: pointer; font-weight: 500; }
-.tl details p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+/* 휴대폰 화면 미리보기 (누르면 실행) */
+.phone { position: relative; display: block; width: 100%; max-width: 250px; padding: 8px; border: 0; border-radius: 28px; background: #111; box-shadow: var(--shadow); cursor: pointer; text-align: center; }
+.duo .phone { max-width: 180px; border-radius: 24px; padding: 7px; }
+.phone img { display: block; width: 100%; height: auto; border-radius: 21px; background: #fff; }
+.duo .phone img { border-radius: 18px; }
+.phone .play { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; background: var(--lane); color: var(--on-lane); font-weight: 700; font-size: 13px; padding: 7px 13px; border-radius: 999px; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.3); }
+.phone.pending .play { background: #fff; color: #1a1e22; }
+.phone.pending .play svg { display: none; }
+.phone:hover .play { filter: brightness(1.06); }
+.phone-cap { display: block; font-size: 13px; color: var(--muted); text-align: center; margin-top: 8px; }
+.phone-wrap { min-width: 0; flex: 1 1 0; max-width: 250px; }
+.duo .phone-wrap { max-width: 180px; }
+
+/* ---------- 발자국: 2채널 + 둘러보기 ---------- */
+.channels { display: grid; gap: 10px; grid-template-columns: 1fr; align-items: stretch; margin-top: 18px; }
+@media (min-width: 700px) { .channels { grid-template-columns: 1fr auto 1fr; } }
+.ch { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.ch .no { font-size: 12px; font-weight: 700; letter-spacing: .05em; color: var(--lane-ink); }
+.ch h4 { margin: 2px 0 4px; font-size: 18px; }
+.ch p { color: var(--muted); font-size: 14px; }
+.ch-mid { display: grid; place-items: center; font-family: var(--f-display); color: var(--muted); font-size: 15px; text-align: center; line-height: 1.2; padding: 2px 6px; }
+.viewer { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.viewer-head { padding: 14px 16px 0; display: grid; gap: 10px; }
+.viewer-head p { font-size: 14px; color: var(--muted); }
+.tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); padding: 0 12px; }
+.tabs button { flex: none; border: 0; background: none; padding: 10px 12px 9px; font-size: 15px; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--lane); }
+.panel { display: grid; gap: 18px 28px; grid-template-columns: minmax(0, 1fr); padding: 18px 16px 20px; }
+@media (min-width: 820px) { .panel { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; } }
+.panel + .panel { border-top: 1px solid var(--line); }
+.win { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; cursor: zoom-in; position: relative; text-align: left; }
+.win .bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #eceeea; color: #4a5158; font-size: 12px; border-bottom: 1px solid #d9ded8; }
+.win .bar i { width: 9px; height: 9px; border-radius: 50%; background: #c4c9c3; flex: none; }
+.win .bar span { margin-left: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.win img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; object-position: top; }
+.win .zoom { position: absolute; right: 10px; bottom: 10px; background: rgba(26,30,34,.82); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+.ptext { display: grid; gap: 10px; align-content: start; }
+.ptext .quote { font-family: var(--f-hand); font-size: 26px; line-height: 1.2; color: var(--lane-ink); }
+.ptext h3 { font-size: 21px; }
+.note { font-size: 14px; color: var(--muted); border-left: 3px solid var(--lane); padding-left: 12px; }
+.pair { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 16px; }
+@media (min-width: 640px) { .pair { grid-template-columns: 1fr 1fr; } }
+.pair > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.pair dt, .pair .lb { font-size: 12px; font-weight: 700; letter-spacing: .05em; color: var(--lane-ink); }
+.pair p { font-size: 15px; margin-top: 2px; }
+
+/* 시각자료 */
+.visuals { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 700px) { .visuals { grid-template-columns: 1fr 1fr; } }
+.visual { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; cursor: zoom-in; position: relative; }
+.visual img { display: block; width: 100%; height: auto; }
+.visual .zoom { position: absolute; right: 10px; bottom: 10px; background: rgba(26,30,34,.82); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+.result.wide-media { grid-template-areas: "head" "media" "desc" "why"; }
+@media (min-width: 820px) { .result.wide-media { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; grid-template-areas: "head" "media" "desc" "why"; } }
+.result.wide-media .r-media { display: block; }
 
 /* ---------- 발걸음 ---------- */
-.ripple { display: grid; gap: 10px; grid-template-columns: 1fr; margin-bottom: 28px; }
-@media (min-width: 760px) { .ripple { grid-template-columns: repeat(4, 1fr); } }
-.ripple div { border-radius: 12px; padding: 14px 16px; border: 1px solid var(--line); background: var(--surface); }
-.ripple div b { display: block; font-family: var(--f-display); font-weight: 400; font-size: 22px; }
-.ripple div span { font-size: 13px; color: var(--muted); }
-.ripple div.on { background: var(--asphalt); color: var(--on-asphalt); border-color: var(--asphalt); }
-.ripple div.on span { color: var(--on-asphalt-muted); }
-.stats { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-@media (min-width: 760px) { .stats { grid-template-columns: repeat(4, 1fr); } }
-.stat { font: inherit; text-align: left; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; cursor: pointer; display: grid; gap: 4px; min-width: 0; }
-.stat:hover { border-color: var(--ink); }
-.stat .num { font-family: var(--f-display); font-size: 40px; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.stat .num small { font-size: 18px; margin-left: 2px; }
-.stat .lb { font-weight: 700; font-size: 15px; }
-.stat .sub { color: var(--muted); font-size: 13px; }
-.blank { color: var(--todo); }
+.acts { margin-top: 24px; border-left: 3px solid var(--line); margin-left: 6px; display: grid; gap: 4px; }
+.acts > li { position: relative; padding: 0 0 22px 22px; display: grid; gap: 4px 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .acts > li { grid-template-columns: 92px minmax(0, 1fr) auto; align-items: start; } }
+.acts > li::before { content: ""; position: absolute; left: -9px; top: 6px; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 3px solid var(--lane); }
+.acts time { font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--muted); padding-top: 3px; }
+.acts h3 { font-size: 19px; }
+.acts p { color: var(--muted); font-size: 15px; }
+.acts .slogan { font-family: var(--f-hand); font-size: 25px; line-height: 1.25; color: var(--ink); }
+.acts ul { margin-top: 4px; display: grid; gap: 2px; font-size: 15px; }
+.acts ul li { padding-left: 14px; position: relative; }
+.acts ul li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+.acts .res { justify-self: start; }
+.next { margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; max-width: 46em; }
+.next h3 { font-size: 17px; margin-bottom: 8px; }
+.next li { padding-left: 16px; position: relative; }
+.next li::before { content: ""; position: absolute; left: 2px; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--lane); }
 
 /* ---------- 맺음 ---------- */
-.close .wrap { padding-block: 64px; display: grid; gap: 18px; }
-.close .big { font-family: var(--f-display); font-size: clamp(28px, 5.5vw, 46px); line-height: 1.25; }
+.close { margin-top: 64px; }
+.close .wrap { padding-block: 60px; display: grid; gap: 18px; }
+.close .big { font-family: var(--f-display); font-size: clamp(28px, 5.4vw, 46px); line-height: 1.25; }
 .close .big em { font-style: normal; color: var(--lane); }
+.close .s2 { font-family: var(--f-hand); font-size: 30px; line-height: 1.2; color: var(--lane); }
 .close .meta { color: var(--on-asphalt-muted); font-size: 14px; display: grid; gap: 4px; }
-.members { display: flex; flex-wrap: wrap; gap: 6px; }
-.members span { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--asphalt-2); color: var(--on-asphalt); }
 
-/* ---------- 상세 다이얼로그 ---------- */
-dialog { border: 0; padding: 0; border-radius: 18px; width: min(560px, calc(100% - 32px)); max-height: calc(100% - 48px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,.35); }
-dialog::backdrop { background: rgba(15,18,21,.55); }
-.dlg { display: grid; gap: 16px; padding: 22px; }
-.dlg header { display: grid; gap: 6px; }
-.dlg .crumb { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.dlg h3 { font-family: var(--f-display); font-weight: 400; font-size: 28px; line-height: 1.2; }
-.dlg dl { margin: 0; display: grid; gap: 12px; }
-.dlg dt { font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--muted); }
-.dlg dd { margin: 2px 0 0; }
-.shot { border: 2px dashed var(--line); border-radius: 12px; aspect-ratio: 16 / 9; max-width: 100%; display: grid; place-items: center; color: var(--muted); font-size: 14px; text-align: center; padding: 10px; }
-.fill { display: inline-block; border-bottom: 2px dashed var(--todo); color: var(--todo); padding: 0 4px; }
-.dlg .x { justify-self: end; font: inherit; font-size: 14px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 10px; padding: 8px 16px; cursor: pointer; }
-.dlg .tools { display: flex; flex-wrap: wrap; gap: 6px; }
-.dlg .tools span { font-size: 12px; padding: 3px 9px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); }
+/* ---------- 실행창 (결과물을 이 화면에서 바로 구동) ---------- */
+.runner { position: fixed; inset: 0; z-index: 50; background: #14171a; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.run-bar { flex: none; display: flex; align-items: center; gap: 8px; padding: 8px max(10px, env(safe-area-inset-right, 0px)) 8px max(10px, env(safe-area-inset-left, 0px)); background: var(--asphalt); color: var(--on-asphalt); border-bottom: 1px solid #000; }
+.run-bar button, .run-bar a { flex: none; min-height: 40px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 10px; border: 1px solid #4a5158; background: var(--asphalt-2); color: var(--on-asphalt); font-size: 14px; text-decoration: none; cursor: pointer; white-space: nowrap; }
+.run-bar .back { background: var(--lane); color: var(--on-lane); border-color: var(--lane); font-weight: 700; }
+.run-bar strong { flex: 1; min-width: 0; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.run-bar .size { display: none; }
+@media (min-width: 760px) { .run-bar .size { display: inline-flex; } }
+.run-stage { flex: 1; min-height: 0; display: flex; justify-content: center; position: relative; }
+.run-stage .loading { position: absolute; inset: 0; display: grid; place-items: center; color: #a7aeb5; font-size: 15px; pointer-events: none; }
+.run-box { position: relative; width: 100%; height: 100%; background: #fff; }
+@media (min-width: 760px) {
+  .run-stage { padding: 14px; }
+  .run-box { max-width: 460px; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .run-box.wide { max-width: 1100px; }
+}
+.run-box iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+/* ---------- 크게 보기 ---------- */
+.viewbox { position: fixed; inset: 0; z-index: 60; background: rgba(15,18,21,.94); display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); }
+.viewbox .vbar { flex: none; display: flex; align-items: center; gap: 10px; padding: 8px max(10px, env(safe-area-inset-right, 0px)) 8px max(10px, env(safe-area-inset-left, 0px)); color: #eef0ec; }
+.viewbox .vbar strong { flex: 1; min-width: 0; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.viewbox .vbar button { flex: none; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: var(--lane); color: var(--on-lane); font-weight: 700; font-size: 14px; cursor: pointer; }
+.viewbox .vscroll { flex: 1; min-height: 0; overflow: auto; padding: 4px 12px 24px; text-align: center; -webkit-overflow-scrolling: touch; }
+.viewbox img { max-width: min(100%, 1000px); height: auto; border-radius: 8px; background: #fff; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-play" viewBox="0 0 12 14"><path d="M1 .6v12.8a.6.6 0 0 0 .9.5l10-6.4a.6.6 0 0 0 0-1L1.9.1A.6.6 0 0 0 1 .6z"/></symbol></svg>
 
 <nav class="nav" aria-label="섹션 이동">
   <div class="wrap">
@@ -256,13 +317,17 @@ dialog::backdrop { background: rgba(15,18,21,.55); }
 <header class="band hero" id="top">
   <div class="wrap">
     <div>
-      <p class="eyebrow" style="color:var(--on-asphalt-muted)">강서운전면허시험장 직무개발 동아리 · 결과보고서 붙임</p>
-      <h1 style="margin-top:14px"><span class="strike">페르마는 여백이 부족해<br>증명을 적지 못했습니다.</span></h1>
+      <p class="eyebrow">강서운전면허시험장 직무개발 동아리 ‘발걸음’ · 결과보고서 별첨</p>
+      <h1>페르마는 여백이 부족해<br>증명을 적지 못했습니다.</h1>
       <p class="answer">AI 시대의 우리는,<br>그럴 일 없습니다.</p>
       <p class="about"><b>페르마의 마지막 정리</b> · 17세기 수학자 페르마는 책 여백에 “놀라운 증명을 찾았지만 여백이 좁아 적지 않는다”는 메모만 남겼습니다. 이 한 줄 때문에 수학자들은 350여 년 동안 증명을 찾아야 했고, 1994년에야 풀렸습니다.</p>
-      <p class="lead">보고서 한 장의 여백에 다 담지 못한 동아리 ‘발걸음’의 결과물을 이곳에 모두 적었습니다.</p>
+      <p class="lead">보고서 여백에 다 담지 못한 결과물을 이곳에 모았습니다. 설명만 읽지 마시고, 직접 눌러서 써 보세요.</p>
+      <div class="cta">
+        <a class="btn btn-run" href="#gil"><svg aria-hidden="true"><use href="#i-play"/></svg>결과물 써 보러 가기</a>
+        <a class="btn btn-ghost" href="#map" style="background:transparent;color:var(--on-asphalt);border-color:#4a5158">한눈에 보기</a>
+      </div>
     </div>
-    <figure class="page" aria-label="페르마가 남긴 여백 메모를 재현한 그림" style="margin:0">
+    <figure class="page" aria-label="페르마가 남긴 여백 메모를 재현한 그림">
       <div class="text" aria-hidden="true">
         <span class="ln"></span><span class="ln s"></span><span class="ln"></span>
         <span class="eq">xⁿ + yⁿ = zⁿ</span>
@@ -279,15 +344,15 @@ dialog::backdrop { background: rgba(15,18,21,.55); }
 <!-- 됩니다 -->
 <section class="band can" aria-label="AI로 해본 것들">
   <div class="wrap">
+    <p class="said">코딩을 배운 적 없는 현장 직원들이 생성형 AI로 직접 기획하고, 만들고, 고쳤습니다. 줄을 누르면 실제 결과물이 열립니다.</p>
     <ul class="can-list" id="canList">
-      <li><a href="#gil" data-open="g1">게임도 <span class="yes">됩니다.</span></a></li>
-      <li><a href="#gil">웹페이지도 <span class="yes">됩니다.</span></a></li>
-      <li><a href="#bal">시스템도 <span class="yes">됩니다.</span></a></li>
-      <li><a href="#bal" data-open="f1">시각자료도 <span class="yes">됩니다.</span></a></li>
-      <li><a href="#gil" data-open="g3">음악도 <span class="yes">됩니다.</span> <span class="note">(곧)</span></a></li>
-      <li class="final"><a href="#map">AI와 함께라면, 대리도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#r-allinone" data-run="allinone">웹페이지도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#r-game" data-run="game">게임도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#r-photo" data-run="photo">사진 판독도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#r-docs" data-run="exam">번역 안내도 <span class="yes">됩니다.</span></a></li>
+      <li><a href="#r-visual">디자인도 <span class="yes">됩니다.</span></a></li>
+      <li class="final"><a href="#map">그래서 성과를 담는 공간도 <span class="yes">됩니다.</span> <span class="aside">지금 보고 계신 이 페이지입니다</span></a></li>
     </ul>
-    <p class="caption">코딩을 배운 적 없는 현장 직원들이 생성형 AI로 직접 기획하고, 만들고, 고쳤습니다. 각 줄을 누르면 해당 결과물로 이동합니다.</p>
   </div>
 </section>
 
@@ -298,106 +363,436 @@ dialog::backdrop { background: rgba(15,18,21,.55); }
     <div class="sec-head">
       <span class="kicker">한눈에 보기</span>
       <h2>두 개의 시스템, 하나의 발걸음</h2>
-      <p>민원인을 위한 <b>길잡이</b>와 직원을 위한 <b>발자국</b>은 각각 흩어진 결과물을 하나로 묶는 시스템입니다. 둘에서 잘된 것이 공단으로 퍼져 나가는 것이 <b>발걸음</b>입니다. 항목을 누르면 상세 내용이 열립니다.</p>
-      <div class="legend"><span class="pill done">완료</span><span class="pill doing">추진중</span><span class="pill todo">작업 전</span></div>
+      <p>동아리의 목표는 직원의 성과를 담을 두 개의 시스템을 구축하는 것이었습니다. 공유 대상에 따라 세 가지 세부 과제로 나뉩니다. 결과물 이름을 누르면 해당 설명으로 이동합니다.</p>
     </div>
     <div class="map">
-      <article class="map-card">
-        <header><h3>길잡이<small>민원인을 위한</small></h3><span class="eyebrow" id="cntG"></span></header>
-        <p class="sys">시스템 · <b>강서올인원</b> 한 페이지에 민원인용 도구를 모두 모음</p>
-        <div class="chips" data-group="gil"></div>
+      <article class="map-row">
+        <h3>길잡이<small>민원인을 위한</small></h3>
+        <div><span class="lb">구축 시스템</span><span class="val">강서 올인원<br>+ 서류 내 인쇄</span></div>
+        <div><span class="lb">시스템 내 결과물</span>
+          <div class="chips">
+            <a class="chip-link" href="#r-allinone">강서 올인원</a>
+            <a class="chip-link" href="#r-docs">서류 작성 서포터 2종</a>
+            <a class="chip-link" href="#r-photo">여권 사진 자가 체크</a>
+            <a class="chip-link" href="#r-game">면허증 취득 모의 게임</a>
+          </div>
+        </div>
+        <div><span class="lb">공유 채널</span><span class="val">QR 코드</span></div>
       </article>
-      <article class="map-card">
-        <header><h3>발자국<small>직원을 위한</small></h3><span class="eyebrow" id="cntF"></span></header>
-        <p class="sys">시스템 · <b>노션 1차 + 업무망 HTML 2차</b> 2채널 공유</p>
-        <div class="chips" data-group="bal"></div>
+      <article class="map-row">
+        <h3>발자국<small>직원을 위한</small></h3>
+        <div><span class="lb">구축 시스템</span><span class="val">외부 앱 + 업무망<br>2채널 직무 공간</span></div>
+        <div><span class="lb">시스템 내 결과물</span>
+          <div class="chips">
+            <a class="chip-link" href="#r-space" data-tab="note">업무 참고 노트</a>
+            <a class="chip-link" href="#r-space" data-tab="timeline">규정 변경 타임라인</a>
+            <a class="chip-link" href="#r-space" data-tab="dispute">민원 분쟁 관련 근거</a>
+            <a class="chip-link" href="#r-visual">직무 시각 자료 2종</a>
+          </div>
+        </div>
+        <div><span class="lb">공유 채널</span><span class="val">노션 + 위클라우드</span></div>
       </article>
-      <article class="map-card wide">
-        <header><h3>발걸음<small>공단으로 퍼지는</small></h3></header>
-        <p class="sys">길잡이와 발자국에서 잘된 것을 <b>직무개선·제안 제도</b>로 공단에 제출</p>
-        <div class="chips" data-group="step"></div>
+      <article class="map-row">
+        <h3>발걸음<small>공단을 위한</small></h3>
+        <div><span class="lb">구축 시스템</span><span class="val">기존 시스템 활용</span></div>
+        <div><span class="lb">활동</span>
+          <div class="chips">
+            <a class="chip-link" href="#step">청정골든벨 참여</a>
+            <a class="chip-link" href="#step">노사 화합 표어 제출</a>
+            <a class="chip-link" href="#step">업무 서식 등 개선안 제출</a>
+            <a class="chip-link" href="#step">제안 등록(예정)</a>
+          </div>
+        </div>
+        <div><span class="lb">공유 채널</span><span class="val">제안 제도, 공문, 공지 등</span></div>
       </article>
     </div>
   </section>
 
-  <!-- 길잡이 -->
+  <!-- ================= 길잡이 ================= -->
   <section class="block" id="gil">
     <div class="sec-head">
-      <span class="kicker">세부과제 1</span>
-      <h2>길잡이<span class="for">민원인을 위한</span></h2>
-      <p>시험장 맞춤 안내를 따로따로 만들지 않고 <b>강서올인원</b> 한 페이지에 모았습니다. 민원인은 QR 하나로 대기 중에 필요한 것을 골라 씁니다.</p>
+      <span class="kicker">세부 과제 1 · 민원인을 위한</span>
+      <h2>길잡이</h2>
+      <p class="lede">민원인의 길을 안내하여 민원 적체를 줄이기 위한 노력</p>
+      <p>노란 <b>▶ 실행해 보기</b>를 누르면 민원인이 QR로 접속하는 실제 화면이 이 자리에서 열립니다.</p>
     </div>
-    <div class="split">
-      <div class="phone" aria-label="강서올인원 화면 예시">
-        <div class="screen">
-          <div class="bar"><div class="t">강서올인원</div><div class="s">강서운전면허시험장 민원 안내</div></div>
-          <div class="grid" id="phoneGrid"></div>
-          <p class="foot">타일을 누르면 상세 내용이 열립니다</p>
+
+    <div class="results">
+
+      <!-- 강서 올인원 -->
+      <article class="result" id="r-allinone">
+        <header class="r-head">
+          <span class="tag sys">구축 시스템</span>
+          <p class="quote">“뭘 좋아할 줄 몰라서 다 준비해 봤어”</p>
+          <h3>강서 올인원</h3>
+        </header>
+        <div class="r-media">
+          <div class="phone-wrap">
+            <button class="phone" type="button" data-run="allinone" data-view="allinone" aria-label="강서 올인원 열기">
+              <img src="img/allinone.png" alt="강서시험장 ALL-IN-ONE 화면. 민원업무 연계 정보, 신규 운전자 안전운전 콘텐츠, 고객의견 수렴 메뉴가 있다" loading="lazy" width="900" height="1169">
+              <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">눌러서 실행</span></span>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="points">
-        <p class="callout">“뭘 좋아하실지 몰라서<br>다 넣어봤어요.”</p>
-        <div class="point"><span class="n">1</span><div><h3>하나의 입구</h3><p>게임, 사진 점검, 안내문, CM송까지 QR 하나로 접속합니다. 새 도구가 생겨도 타일만 추가하면 됩니다.</p></div></div>
-        <div class="point"><span class="n">2</span><div><h3>대기시간을 안내 시간으로</h3><p>기다리는 동안 게임과 안내문으로 업무 순서를 미리 익혀, 창구에서 다시 묻는 일을 줄입니다.</p></div></div>
-        <div class="point"><span class="n">3</span><div><h3>외주 없이 직접 제작</h3><p>모든 도구를 동아리원이 생성형 AI로 만들고 현장 반응을 보며 바로 고쳤습니다.</p></div></div>
-        <p class="sub" style="color:var(--muted);font-size:14px">성과 · 접속 수 <span class="fill">작성 예정</span> · 단순 문의 감소 <span class="fill">작성 예정</span></p>
-      </div>
+        <div class="r-act">
+          <button class="btn btn-run" type="button" data-run="allinone"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">실행해 보기</span></button>
+          <a class="btn btn-ghost" data-new="allinone" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
+        </div>
+        <ul class="r-desc">
+          <li>직원이 제작한 자료를 담을 그릇을 제공하여 민원인에게 더욱 쉽게 정보 제공</li>
+          <li>홈페이지 형식보다 필요한 기능을 보기 쉽게 제공하는 것이 활용도가 높다고 판단</li>
+          <li>동아리원 외 직원의 성과도 포함하고 있으며 추가 기능을 지속 반영 및 조정
+            <div class="inside" aria-label="강서 올인원에 담긴 기능"><span>7년 무사고 서류 점검</span><span>고령운전자 안내</span><span>교통안전교육 웹툰</span><span>운전 성향 테스트</span><span>고객의견 수렴</span></div>
+          </li>
+        </ul>
+        <div class="r-why">
+          <details class="why">
+            <summary>개선취지 · 활용방안 · 기대효과</summary>
+            <dl>
+              <div><dt>개선취지</dt><dd>AI를 활용한 성과가 늘면서 시험장 내 다양한 QR 코드를 무분별하게 사용해 구분이 어렵고 정보 제공이 제한적</dd></div>
+              <div><dt>활용방안</dt><dd>면허시험장 주 출입구나 자주 시선이 모이는 곳에 QR 코드를 배너 등으로 배치하여 접근성을 높이며, 페이지에 접속한 민원인이 다른 유익한 정보도 쉽게 얻게 함</dd></div>
+              <div><dt>기대효과</dt><dd>QR 코드를 통합해서 얻는 환경적 이점과, 민원인이 대기하면서 업무 절차를 미리 알거나 사전에 준비를 마칠 수 있어 민원 혼잡도 감소. 직원 입장에서도 좋은 성과 아이디어를 제출하기가 수월함</dd></div>
+            </dl>
+          </details>
+        </div>
+      </article>
+
+      <!-- 서류 작성 서포터 -->
+      <article class="result duo" id="r-docs">
+        <header class="r-head">
+          <span class="tag item">서류 내 인쇄</span>
+          <p class="quote">“서류 작성을 모르겠어요”</p>
+          <h3>서류에 인쇄하는 작성 서포터 2종</h3>
+        </header>
+        <div class="r-media">
+          <div class="phone-wrap">
+            <button class="phone" type="button" data-run="seven" data-view="seven" aria-label="7년 무사고 서류 자가진단 열기">
+              <img src="img/sevenyear.png" alt="7년 무사고 서류 자가진단 화면. 기본 원칙 안내와 대상자 여부를 묻는 질문이 있다" loading="lazy" width="455" height="579">
+              <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">눌러서 실행</span></span>
+            </button>
+            <span class="phone-cap">7년 무사고 자가진단</span>
+          </div>
+          <div class="phone-wrap">
+            <button class="phone" type="button" data-run="exam" data-view="exam" aria-label="응시원서 번역본 열기">
+              <img src="img/examform.png" alt="응시원서 번역본 화면. 영어, 중국어, 베트남어, 러시아어 중 언어를 고른다" loading="lazy" width="900" height="817">
+              <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">눌러서 실행</span></span>
+            </button>
+            <span class="phone-cap">외국면허 응시원서 번역본</span>
+          </div>
+        </div>
+        <div class="r-act">
+          <button class="btn btn-run" type="button" data-run="seven"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">7년 무사고 자가진단 실행</span></button>
+          <button class="btn btn-run" type="button" data-run="exam"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">응시원서 번역본 실행</span></button>
+        </div>
+        <ul class="r-desc">
+          <li>응시원서 작성이 어려우면 안내 창구가 혼잡해지므로, 서류 작성을 돕는 정보는 서류에 QR 코드로 인쇄해야 한다고 판단</li>
+          <li><b>7년 무사고 자가진단</b> · 절차에 증빙 서류가 필요해지면서 민원인이 대상 자격이나 필요 서류에 혼란이 크기 때문에 자가진단 형태로 안내 제공</li>
+          <li><b>외국면허 번역본</b> · 외국면허 교환은 서류 작성에 많은 시간과 직원의 노력이 필요하기 때문에, 공단에서 제공한 4종의 번역본(영어·중국어·베트남어·러시아어)을 QR 코드로 번역 웹페이지에 연결</li>
+        </ul>
+        <div class="r-why">
+          <details class="why">
+            <summary>개선취지 · 활용방안 · 기대효과</summary>
+            <dl>
+              <div><dt>개선취지</dt><dd>서류 작성 시간이 길수록 시험장 혼잡도가 늘기 때문에 작성에 도움이 되는 정보를 적시에 제공할 필요</dd></div>
+              <div><dt>활용방안</dt><dd>응시원서 서류에 QR 코드를 덧인쇄하여 대상자에게 정보를 알맞게 제공하며 필기대 등에도 추가로 비치</dd></div>
+              <div><dt>기대효과</dt><dd>서류 작성 시간을 줄이고, 정보를 적시에 제공하여 불필요한 절차를 제거하거나 민원 질의를 감소시킴</dd></div>
+            </dl>
+          </details>
+        </div>
+      </article>
+
+      <!-- 여권 규격 셀프 체크 -->
+      <article class="result" id="r-photo">
+        <header class="r-head">
+          <span class="tag item">강서 올인원 탑재</span>
+          <p class="quote">“여권 사진 규격이 대체 뭐길래”</p>
+          <h3>여권 규격 셀프 체크</h3>
+        </header>
+        <div class="r-media">
+          <div class="phone-wrap">
+            <button class="phone" type="button" data-run="photo" data-view="photo" aria-label="여권사진 규격 셀프 체크 열기">
+              <img src="img/photocheck.png" alt="여권사진 규격 셀프 체크 화면. 인화된 사진 찍기와 사진 업로드 버튼, 사진 규격 안내가 있다" loading="lazy" width="900" height="1312">
+              <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">눌러서 실행</span></span>
+            </button>
+          </div>
+        </div>
+        <div class="r-act">
+          <button class="btn btn-run" type="button" data-run="photo"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">실행해 보기</span></button>
+          <a class="btn btn-ghost" data-new="photo" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
+          <span class="hint">사진은 기기 안에서만 분석되며, 어디에도 전송되거나 저장되지 않습니다.</span>
+        </div>
+        <ul class="r-desc">
+          <li>직원은 여권 규격 사진이 익숙하지만 민원인은 규격을 정확히 알기 어렵고 법 개정도 인지하지 못하기 때문에, 민원인에게 정보를 제공하기 위해 구상</li>
+          <li>오픈소스인 구글 MediaPipe Face Mesh를 기반으로, 사진의 얼굴을 인식해 고개 각도, 눈·입 벌림, 앞머리 가림 등을 판별하도록 AI가 코딩</li>
+          <li>공단 규정과 외교부 규정을 함께 게시하여 여권 사진 이해도 증진이 목적</li>
+        </ul>
+        <div class="r-why">
+          <details class="why">
+            <summary>개선취지 · 활용방안 · 기대효과</summary>
+            <dl>
+              <div><dt>개선취지</dt><dd>26년 3월부로 면허증 사진 규정이 강화되었으나 민원인은 이 사실을 인지하지 못해 사진으로 인한 민원 발생이 잦음. 민원인이 사진을 스스로 판단해 볼 방법도 없음</dd></div>
+              <div><dt>활용방안</dt><dd>사진 찍는 곳, 사진을 안내하는 곳에 QR 코드를 비치하여 참고하게 하거나 강서 올인원에 탑재하여 정보 전달</dd></div>
+              <div><dt>기대효과</dt><dd>사진과 관련된 민원을 감소시키고, 민원인도 정보를 알고 불필요하게 낭비되는 시간을 줄여 민원 적체 감소</dd></div>
+            </dl>
+          </details>
+        </div>
+      </article>
+
+      <!-- 시험절차 모의게임 -->
+      <article class="result" id="r-game">
+        <header class="r-head">
+          <span class="tag item">대기 장소 QR</span>
+          <p class="quote">“시험을 보러 왔는데… 어디로 가야 하죠?”</p>
+          <h3>시험절차 모의게임</h3>
+        </header>
+        <div class="r-media">
+          <div class="phone-wrap">
+            <button class="phone" type="button" data-run="game" data-view="game" aria-label="면허 시험장 탐험 게임 열기">
+              <img src="img/game.png" alt="면허 시험장 탐험 게임 화면. 도트 그래픽으로 그린 시험장에서 캐릭터가 민원인과 대화한다" loading="lazy" width="900" height="1296">
+              <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">눌러서 실행</span></span>
+            </button>
+          </div>
+        </div>
+        <div class="r-act">
+          <button class="btn btn-run" type="button" data-run="game"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">게임 해 보기</span></button>
+          <a class="btn btn-ghost" data-new="game" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
+          <span class="hint">휴대폰은 화면의 방향 버튼과 A 버튼, PC는 방향키와 스페이스바로 움직입니다.</span>
+        </div>
+        <ul class="r-desc">
+          <li>면허 시험 응시 절차는 시각 자료로 만들기 어렵지만, 게임으로 익히면 단계별 준비물이나 유의사항 등 많은 정보를 민원인이 학습할 수 있다고 생각</li>
+          <li>강서시험장을 축소하여 위치 등 실질적 도움을 주고자 하며, 추후 기능시험을 보거나 도로주행 영상을 시청하는 등 기능을 추가할 예정</li>
+          <li>다양한 기능을 추가해 완성도가 높아지면 타 시험장에 성과 공유</li>
+        </ul>
+        <div class="r-why">
+          <details class="why">
+            <summary>개선취지 · 활용방안 · 기대효과</summary>
+            <dl>
+              <div><dt>개선취지</dt><dd>시험 응시 과정에서 시험장 여러 곳을 돌아다녀야 하지만 시험 위치나 건물 층을 세세히 알기에는 한계가 있음</dd></div>
+              <div><dt>활용방안</dt><dd>시험 접수 대기나 시험 대기 장소에 안내 배너를 설치하여 주의사항이나 다음 순서를 알 수 있게 함</dd></div>
+              <div><dt>기대효과</dt><dd>민원인이 대기 시간을 활용할 수 있으며, 시험장 구조를 숙지할 수 있기 때문에 시험 응시에 늦는 일을 방지하거나 직원에게 질의하는 시간이 줄어 민원 혼잡도 감소</dd></div>
+            </dl>
+          </details>
+        </div>
+      </article>
+
     </div>
   </section>
 
-  <!-- 발자국 -->
+  <!-- ================= 발자국 ================= -->
   <section class="block" id="bal">
     <div class="sec-head">
-      <span class="kicker">세부과제 2</span>
-      <h2>발자국<span class="for">직원을 위한</span></h2>
-      <p>구전되던 업무 지식을 기록으로 남기고, 휴대폰과 업무망 어디서든 같은 자료를 보도록 <b>2채널 공유 체계</b>를 만들었습니다.</p>
-    </div>
-    <ol class="steps">
-      <li><b>AI로 자료 제작</b><span>시각자료·타임라인·가이드라인을 생성형 AI로 작성</span></li>
-      <li class="ch"><span class="tag">1차 채널</span><b>노션 앱 공유</b><span>휴대폰에서 바로 열람, 수정 즉시 반영</span></li>
-      <li><b>HTML 내보내기</b><span>노션 원본 하나에서 그대로 변환, 이중 관리 없음</span></li>
-      <li class="ch"><span class="tag">2차 채널</span><b>업무망 공유</b><span>폐쇄망 PC에서도 내부 클라우드로 열람</span></li>
-    </ol>
-
-    <div class="seg" role="tablist" aria-label="채널 선택">
-      <button role="tab" id="tabMobile" aria-selected="true" data-ch="mobile">1차 · 휴대폰(노션)</button>
-      <button role="tab" id="tabPc" aria-selected="false" data-ch="pc">2차 · 업무망 PC</button>
-    </div>
-    <div class="channel" id="chMobile">
-      <div class="dev"><div class="row"><span>📱 노션 · 발자국 워크스페이스</span><span>실시간</span></div><div class="row"><span>업무 변경 타임라인</span><span>방금 수정</span></div><div class="row"><span>특수업무 가이드라인</span><span>열람</span></div></div>
-      <ul><li>출근길·휴직 중에도 휴대폰으로 변경 사항 확인</li><li>누구나 수정할 수 있는 위키 방식</li><li>이용 직원 수 <span class="fill">작성 예정</span></li></ul>
-    </div>
-    <div class="channel" id="chPc" hidden>
-      <div class="dev"><div class="row"><span>🖥️ 업무망 · 내부 클라우드</span><span>HTML</span></div><div class="row"><span>발자국_자료집.html</span><span>정기 갱신</span></div><div class="row"><span>창구 PC에서 바로 열기</span><span>오프라인</span></div></div>
-      <ul><li>외부망이 막힌 창구 PC에서도 같은 자료 열람</li><li>노션 원본에서 내보내므로 내용이 항상 동일</li><li>갱신 주기 <span class="fill">작성 예정</span></li></ul>
+      <span class="kicker">세부 과제 2 · 직원을 위한</span>
+      <h2>발자국</h2>
+      <p class="lede">직원이 일한 기록은 다음 직원에게 발자국이 되도록</p>
     </div>
 
-    <div class="cards" id="balCards"></div>
+    <div class="results">
 
-    <div class="tl">
-      <h3>업무 변경 타임라인 미리보기 <span class="pill todo">예시</span></h3>
-      <ol>
-        <li><time>20XX.XX</time><details><summary>규정 변경 항목 제목 <span class="fill">작성 예정</span></summary><p>변경 내용, 적용일, 창구 처리 방법, 근거 지침을 한 칸에 기록합니다.</p></details></li>
-        <li><time>20XX.XX</time><details><summary>지침 변경 항목 제목 <span class="fill">작성 예정</span></summary><p>최신 항목이 위로 쌓여 복직자·신규자가 위에서부터 읽으면 됩니다.</p></details></li>
-        <li><time>20XX.XX</time><details><summary>신규 도입 업무 <span class="fill">작성 예정</span></summary><p>새 업무의 통일된 처리 방식을 함께 남깁니다.</p></details></li>
-      </ol>
+      <!-- 2채널 직무 공간 -->
+      <article class="result wide-media" id="r-space">
+        <header class="r-head">
+          <span class="tag sys">구축 시스템</span>
+          <p class="quote">“물을 사람도 없고 문서는 못 찾겠고”</p>
+          <h3>2채널 직무 공간 구축</h3>
+        </header>
+        <div class="r-media">
+          <div class="channels">
+            <div class="ch"><span class="no">1채널 · 휴대폰과 개인 PC</span><h4>외부 앱(노션)</h4><p>직원이 업무 정보를 언제든 확인할 수 있는 웹페이지 개설</p></div>
+            <div class="ch-mid">같은<br>내용</div>
+            <div class="ch"><span class="no">2채널 · 창구 업무 PC</span><h4>면허망 내 클라우드</h4><p>업무 중 참고할 동일한 내용의 페이지를 면허망 안에 구축</p></div>
+          </div>
+
+          <div class="viewer">
+            <div class="viewer-head">
+              <p>직무 공간 ‘강서시험장 업무 발자국’ 둘러보기. 직원 전용 공간이라 화면으로 소개하며, 문서 원문은 보안상 면허망에서만 열람합니다. 화면을 누르면 크게 볼 수 있습니다.</p>
+            </div>
+            <div class="tabs" role="tablist" aria-label="직무 공간 화면">
+              <button type="button" role="tab" id="t-home" aria-controls="p-home" aria-selected="true">첫 화면</button>
+              <button type="button" role="tab" id="t-note" aria-controls="p-note" aria-selected="false">업무 참고 노트</button>
+              <button type="button" role="tab" id="t-timeline" aria-controls="p-timeline" aria-selected="false">업무변경 타임라인</button>
+              <button type="button" role="tab" id="t-dispute" aria-controls="p-dispute" aria-selected="false">민원 분쟁 관련 근거</button>
+            </div>
+
+            <div class="panel" role="tabpanel" id="p-home" aria-labelledby="t-home">
+              <button class="win" type="button" data-view="nhome" aria-label="업무 발자국 첫 화면 크게 보기">
+                <span class="bar"><i></i><i></i><i></i><span>강서시험장 업무 발자국</span></span>
+                <img src="img/notion-home.png" alt="강서시험장 업무 발자국 첫 화면. 업무 참고 노트, 업무 규정 변경 이력, 민원 분쟁 관련 근거 세 가지 메뉴가 있다" loading="lazy" width="1000" height="887">
+                <span class="zoom">크게 보기</span>
+              </button>
+              <div class="ptext">
+                <h3>강서시험장 업무 발자국</h3>
+                <ul class="r-desc">
+                  <li>직무 공간에 포함하는 자료는 세 가지: 업무 참고 노트, 업무 규정 변경 이력, 민원 분쟁 관련 근거</li>
+                  <li>두 채널 모두 같은 내용이므로, 휴대폰으로 본 내용을 창구 PC에서 그대로 다시 찾을 수 있음</li>
+                </ul>
+                <details class="why">
+                  <summary>개선취지</summary>
+                  <dl><div><dt>개선취지</dt><dd>업무 방식을 말이나 개인 기억으로 전달하니 혼란스러운 상황이 발생하지만 직무 자료를 공유할 공간이 없음. 업무 자료를 출력하거나 메신저로 공유하기엔 한계가 있음</dd></div></dl>
+                </details>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="p-note" aria-labelledby="t-note">
+              <button class="win" type="button" data-view="nnote" aria-label="업무 참고 노트 화면 크게 보기">
+                <span class="bar"><i></i><i></i><i></i><span>업무 참고 노트</span></span>
+                <img src="img/notion-note.png" alt="업무 참고 노트 화면. 업무와 관련하여 알아두면 좋을 것, 가끔 하다 보니 헷갈릴 수 있는 것들, 특수 업무 정보 목차가 있다" loading="lazy" width="1000" height="1223">
+                <span class="zoom">크게 보기</span>
+              </button>
+              <div class="ptext">
+                <p class="quote">“그때 내가 어떻게 했더라…”</p>
+                <h3>업무 참고 자료</h3>
+                <ul class="r-desc">
+                  <li>직원에게 실질적으로 도움이 될 법한 업무 처리 기준이나 헷갈리는 업무의 정리, 유용한 자료를 공유</li>
+                  <li>검색해서 필요한 정보를 찾고 관련 자료도 첨부되어 있기 때문에, 질의하며 업무하는 시간을 절약</li>
+                </ul>
+                <details class="why">
+                  <summary>개선취지</summary>
+                  <dl><div><dt>개선취지</dt><dd>업무 특성상 가끔 하게 되는 업무나 특수 업무, 혹은 바뀐 규정 내용의 질의에 답해야 할 때가 있지만 참고하는 자료가 제한적이라 직원끼리 서로 알아보는 시간이 소요</dd></div></dl>
+                </details>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="p-timeline" aria-labelledby="t-timeline">
+              <button class="win" type="button" data-view="ntimeline" aria-label="업무 규정 변경 이력 화면 크게 보기">
+                <span class="bar"><i></i><i></i><i></i><span>업무 규정 변경 이력</span></span>
+                <img src="img/notion-timeline.png" alt="업무 규정 변경 이력 화면. 적용일, 배포일, 기준일 표시와 함께 2026년 규정 변경이 최신순으로 나열되어 있다" loading="lazy" width="1000" height="1175">
+                <span class="zoom">크게 보기</span>
+              </button>
+              <div class="ptext">
+                <p class="quote">“휴직하고 왔더니… 언제 바뀐 거죠?”</p>
+                <h3>업무변경 타임라인</h3>
+                <ul class="r-desc">
+                  <li>업무 변경이나 도입, 시행을 시행일(또는 배포일)의 시간 역순으로 정리하여 관리</li>
+                  <li>관련 문서를 첨부하였기에(보안상 면허망에서만) 매번 문서 찾는 시간을 줄일 수 있고, 휴직자와 직무 변경자에게 유용할 것으로 예상</li>
+                </ul>
+                <details class="why">
+                  <summary>개선취지</summary>
+                  <dl><div><dt>개선취지</dt><dd>매번 내려오는 지침과 규정 변경은 다들 숙지하지만 적용일을 알기 어렵고, 문서 내용을 필요할 때마다 찾게 되어 시간이 낭비됨</dd></div></dl>
+                </details>
+              </div>
+            </div>
+
+            <div class="panel" role="tabpanel" id="p-dispute" aria-labelledby="t-dispute">
+              <button class="win" type="button" data-view="ndispute" aria-label="민원 분쟁 관련 근거 화면 크게 보기">
+                <span class="bar"><i></i><i></i><i></i><span>민원 분쟁 관련 근거</span></span>
+                <img src="img/notion-dispute.png" alt="민원 분쟁 관련 근거 화면. 직원 보호의 법적 근거, 상담을 끝내거나 줄일 수 있는 근거 항목이 질문 형태로 정리되어 있다" loading="lazy" width="1000" height="1106">
+                <span class="zoom">크게 보기</span>
+              </button>
+              <div class="ptext">
+                <p class="quote">“직원도 보호받을 수 있는 거죠?”</p>
+                <h3>민원 분쟁 관련 근거</h3>
+                <ul class="r-desc">
+                  <li>공직자 민원 응대 매뉴얼과 행정법 등을 토대로, AI를 통해 법률 관점에서 편집한 자료</li>
+                  <li>법률적 자문이 될 순 없더라도 현장에서 필요한 최소한의 조치를 통해 직원에게 위안이 되었으면 하는 마음</li>
+                </ul>
+                <details class="why">
+                  <summary>개선취지</summary>
+                  <dl><div><dt>개선취지</dt><dd>하루가 멀다 하고 발생하는 민원에 대하여 직원에게 적법한 권리를 알리고 방지를 위한 최소한의 조치가 필요했으나, AI 이전엔 법률 해석에 한계가 있었음</dd></div></dl>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <div class="pair">
+            <div><span class="lb">활용방안</span><p>직원은 면허망과 휴대폰 앱(혹은 개인 PC)으로 업무 정보를 확인하고 수정하며, 제안된 아이디어를 반영할 수 있음. 신규 직원 교육이나 직무 변경자, 휴·복직자에게 유용</p></div>
+            <div><span class="lb">기대효과</span><p>검색이나 첨부 문서 확인으로 정보에 손쉽게 접근하므로 업무 시간이 절약되며 민원 업무 시 실수를 방지함. 통일된 업무를 제공하고 직원의 권리를 증진하는 데에 도움</p></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 직무 시각자료 -->
+      <article class="result wide-media" id="r-visual">
+        <header class="r-head">
+          <span class="tag item">창구 비치</span>
+          <p class="quote">“똑같은 백 마디 말보단 한 번의 시각자료”</p>
+          <h3>직무 자료 제작 2종</h3>
+        </header>
+        <div class="r-media">
+          <div class="visuals">
+            <button class="visual" type="button" data-view="vlicense" aria-label="1종에서 2종 면허 선택 안내 자료 크게 보기">
+              <img src="img/visual-license.png" alt="1종에서 2종 면허로 바꾸는 두 가지 방법 비교. 본인희망 자진축소는 바로 처리되지만 1종 회복 불가, 시력미달 격하는 1종 회복이 가능하지만 30~50분 더 걸린다" loading="lazy" width="1054" height="767">
+              <span class="zoom">크게 보기</span>
+            </button>
+            <button class="visual" type="button" data-view="vmobile" aria-label="모바일 운전면허증 방식 선택 안내 자료 크게 보기">
+              <img src="img/visual-mobile.png" alt="모바일 운전면허증 두 가지 방식 비교. IC 방식은 사용기한이 갱신기간까지이고 수수료 15,000원, QR 방식은 사용기한 최대 3년이고 수수료 1,000원" loading="lazy" width="1079" height="753">
+              <span class="zoom">크게 보기</span>
+            </button>
+          </div>
+        </div>
+        <ul class="r-desc">
+          <li>시인성에 초점을 두어 제작하였으며 양면 복사 후 코팅하여 자리마다 비치하고 사용</li>
+          <li>가장 많이 사용하는 2가지 경우를 우선 제작하였으며, 추후 필요한 자료도 AI의 디자인 기능을 활용해 제작</li>
+        </ul>
+        <div class="r-why">
+          <details class="why">
+            <summary>개선취지 · 활용방안 · 기대효과</summary>
+            <dl>
+              <div><dt>개선취지</dt><dd>민원인이 선택해야 하는 업무를 직원이 말로만 설명해 이해시키려면 많은 노력이 요구되며 민원인도 이해하기 어려움</dd></div>
+              <div><dt>활용방안</dt><dd>출력한 자료를 창구마다 비치하여 해당 상황이 발생했을 때 적절하게 사용하여 선택에 도움을 줌</dd></div>
+              <div><dt>기대효과</dt><dd>직원의 피로감을 덜고 민원인도 이해가 쉬워져 업무 시간이 단축되고, 혼란으로 인한 변경 접수 등을 방지</dd></div>
+            </dl>
+          </details>
+        </div>
+      </article>
+
     </div>
   </section>
 
-  <!-- 발걸음 -->
-  <section class="block" id="step" style="padding-bottom:64px">
+  <!-- ================= 발걸음 ================= -->
+  <section class="block" id="step">
     <div class="sec-head">
-      <span class="kicker">세부과제 3</span>
-      <h2>발걸음<span class="for">공단으로 퍼지는</span></h2>
-      <p>시험장에서 잘된 것을 공단의 제도를 통해 밖으로 내보냈습니다. 동아리원 개개인의 걸음도 함께 기록합니다.</p>
+      <span class="kicker">세부 과제 3 · 공단을 위한</span>
+      <h2>발걸음</h2>
+      <p class="lede">미래로 도약하기 위한 의미 있는 한 걸음, 한 걸음</p>
+      <p>좋은 성과의 공유나 제안으로 공단의 변화를 위해 도전한 동아리 대외 활동입니다.</p>
     </div>
-    <div class="ripple" aria-label="확산 단계">
-      <div class="on"><b>동아리</b><span>AI로 직접 제작·검증</span></div>
-      <div class="on"><b>강서시험장</b><span>현장 적용·피드백</span></div>
-      <div><b>전국 시험장</b><span>직무개선·제안으로 공유</span></div>
-      <div><b>공단</b><span>우수사례 확산</span></div>
+
+    <ol class="acts">
+      <li>
+        <time datetime="2026-09-10">26.9.10.</time>
+        <div><h3>도전! 청정골든벨 참가</h3><p>동아리 구성원 2인 참여</p></div>
+        <span class="tag todo res">등외</span>
+      </li>
+      <li>
+        <time datetime="2026-10-16">26.10.16.</time>
+        <div><h3>노사 화합 표어 제출</h3><p class="slogan">“공단이 노동으로 상생하면, 노사의 조합이 조화집니다.”</p></div>
+        <span class="tag todo res">미선발</span>
+      </li>
+      <li>
+        <time datetime="2026-10-23">26.10.23.</time>
+        <div><h3>면허시험장 효율화 개선안 5건 제출</h3>
+          <ul>
+            <li>개인정보 활용 동의서 통합 및 간소화</li>
+            <li>자주 틀리는 질병·신체 신고 서식 개선안</li>
+            <li>면허망 내 발급기 번호 자동화 등의 개선</li>
+            <li>신여권만으로 업무할 수 있도록 간소화</li>
+            <li>정산 시스템 내 영수증 출력 등 오류 개선</li>
+          </ul>
+        </div>
+        <span class="tag doing res">처리 중</span>
+      </li>
+      <li>
+        <time>예정</time>
+        <div><h3>제안 등록: AI 인프라 지원 및 활용 가이드라인 구축</h3>
+          <ul>
+            <li>AI를 활용할 수 있는 시험장 예산 등 지원</li>
+            <li>활용 자료에 대한 가이드라인 및 통일안</li>
+            <li>실제 AI로 성과를 내며 느낀 것을 제안</li>
+          </ul>
+        </div>
+        <span class="tag todo res">등록 예정</span>
+      </li>
+    </ol>
+
+    <div class="next">
+      <h3>동아리 추후 계획</h3>
+      <ul>
+        <li>강서 올인원을 활용하여 민원 편의를 제공할 대응책 지속 마련</li>
+        <li>직무 공간의 내용을 지속적으로 반영하고 개선하는 노력</li>
+        <li>성과를 내며 느낀 불편한 점이나 필요한 것에 대한 제안 등록</li>
+        <li>성과의 완성도를 높여 타 시험장과 공유(면허 취득 게임 등)</li>
+      </ul>
     </div>
-    <div class="stats" id="stats"></div>
   </section>
 </main>
 
@@ -405,150 +800,179 @@ dialog::backdrop { background: rgba(15,18,21,.55); }
 <footer class="band close">
   <div class="wrap">
     <p class="big">페르마의 여백은 350년을 기다렸습니다.<br>우리의 여백은 <em>QR 하나</em>면 충분합니다.</p>
+    <p class="s2">“발걸음 시즌 2? 발걸음은 계속되어야 합니다.”</p>
     <div class="meta">
       <span>동아리 발걸음 · AI 시대에 발맞추는 대리들의 걸음</span>
-      <span>도로교통공단 강서운전면허시험장 민원부 · 시험부 · 지원부</span>
+      <span>한국도로교통공단 강서운전면허시험장 직무개발 동아리</span>
     </div>
   </div>
 </footer>
 
-<dialog id="dlg" aria-labelledby="dlgTitle">
-  <div class="dlg">
-    <header>
-      <div class="crumb"><span id="dlgGroup"></span><span id="dlgPill"></span></div>
-      <h3 id="dlgTitle"></h3>
-    </header>
-    <div class="shot" id="dlgShot">화면 캡처 / 사진 자리</div>
-    <dl>
-      <div><dt>무엇을</dt><dd id="dlgWhat"></dd></div>
-      <div><dt>왜</dt><dd id="dlgWhy"></dd></div>
-      <div><dt>AI 활용</dt><dd><div class="tools" id="dlgTools"></div></dd></div>
-      <div><dt>성과</dt><dd id="dlgResult"></dd></div>
-    </dl>
-    <button class="x" id="dlgClose" type="button">닫기</button>
+<!-- 실행창 -->
+<div class="runner" id="runner" role="dialog" aria-modal="true" aria-labelledby="runTitle" hidden>
+  <div class="run-bar">
+    <button type="button" class="back" id="runClose">← 별첨으로</button>
+    <strong id="runTitle"></strong>
+    <button type="button" class="size" id="runSize" aria-pressed="false">넓게 보기</button>
+    <a id="runNew" target="_blank" rel="noopener">새 창 ↗</a>
   </div>
-</dialog>
+  <div class="run-stage">
+    <p class="loading" id="runLoading">불러오는 중…</p>
+    <div class="run-box" id="runBox"></div>
+  </div>
+</div>
+
+<!-- 크게 보기 -->
+<div class="viewbox" id="viewbox" role="dialog" aria-modal="true" aria-labelledby="viewTitle" hidden>
+  <div class="vbar"><strong id="viewTitle"></strong><button type="button" id="viewClose">닫기</button></div>
+  <div class="vscroll" id="viewScroll"><img id="viewImg" alt=""></div>
+</div>
 
 <script>
-// ===== 결과물 데이터: 이 배열만 고치면 지도·폰 화면·카드·상세창이 함께 바뀜 =====
-// status: done 완료 / doing 추진중 / todo 작업 전
-const FILL = '<span class="fill">작성 예정</span>';
-const ITEMS = [
-  // 길잡이 (강서올인원)
-  { id: 'g1', group: 'gil', icon: '게', name: '면허 모의 취득 게임', status: 'doing',
-    what: '대기시간에 도트 탐험형 게임으로 시험장을 돌아다니며 응시 절차를 익힙니다.',
-    why: '업무 순서를 몰라 창구를 여러 번 오가는 일을 줄이기 위해',
-    tools: ['생성형 AI 코딩', '웹 게임'], result: '플레이 수 ' + FILL },
-  { id: 'g2', group: 'gil', icon: '사', name: '면허증 사진 셀프 체크', status: 'doing',
-    what: '가져온 사진이 면허증 규격에 맞는지 민원인이 스스로 확인합니다.',
-    why: '사진 부적합으로 재촬영·재방문하는 경우를 줄이기 위해',
-    tools: ['생성형 AI 코딩', '이미지 판별'], result: '사용 수 ' + FILL },
-  { id: 'g3', group: 'gil', icon: '♪', name: '안전 CM송', status: 'todo',
-    what: '여러 위험을 경고하고, 적성검사를 연말 전에 받도록 알리는 노래입니다.',
-    why: '연말 적성검사 몰림을 분산하고 안전 메시지를 쉽게 기억시키기 위해',
-    tools: ['AI 작사', 'AI 작곡'], result: FILL },
-  { id: 'g4', group: 'gil', icon: '안', name: '민원인 선택 안내문', status: 'doing',
-    what: '1종→2종 자진축소와 시력미달 격하 비교, 모바일 면허증 IC·QR 방식 비교 등 A4 한 장 안내문입니다.',
-    why: '창구에서 반복 설명하던 선택지를 민원인이 먼저 읽고 고르도록',
-    tools: ['생성형 AI 작성', '디자인 도구'], result: '제작 건수 ' + FILL },
-  { id: 'g5', group: 'gil', icon: '外', name: '다국어 응시원서 안내', status: 'todo',
-    what: '언어를 고르면 해당 언어로 번역된 응시원서 안내로 연결됩니다.',
-    why: '외국인 민원인의 서식 작성 시간을 줄이기 위해',
-    tools: ['AI 번역'], result: FILL },
-  // 발자국 (2채널)
-  { id: 'f1', group: 'bal', icon: '시', name: '업무 시각자료', status: 'doing',
-    what: '복잡한 업무 흐름과 판단 기준을 한눈에 보이는 그림·표로 만듭니다.',
-    why: '말로 전하던 업무를 누구나 같은 방식으로 이해하도록',
-    tools: ['생성형 AI', '디자인 도구'], result: '제작 ' + FILL + '건' },
-  { id: 'f2', group: 'bal', icon: '연', name: '업무 변경 타임라인', status: 'doing',
-    what: '면허 규정·지침 변경을 최신순으로 쌓아 기록합니다.',
-    why: '휴직·복직자와 신규 직원이 바뀐 내용을 빠르게 따라잡도록',
-    tools: ['노션', '생성형 AI 요약'], result: '기록 ' + FILL + '건' },
-  { id: 'f3', group: 'bal', icon: '특', name: '특수업무 가이드라인', status: 'doing',
-    what: '국제·외국 면허, 수시 적성검사 등 자주 하지 않는 업무의 최소 처리 가이드입니다.',
-    why: '담당자가 없을 때도 기본 처리가 가능하도록',
-    tools: ['노션', '생성형 AI 정리'], result: '가이드 ' + FILL + '종' },
-  { id: 'f4', group: 'bal', icon: '규', name: '자주 묻는 관련 규정', status: 'doing',
-    what: '창구에서 자주 확인하는 규정을 질문 형태로 정리했습니다.',
-    why: '규정 원문을 찾는 시간을 줄이기 위해',
-    tools: ['노션', '생성형 AI 정리'], result: '항목 ' + FILL + '개' },
-  // 발걸음 (동아리원 활동)
-  { id: 's1', group: 'step', icon: '개', name: '직무 개선 제출', status: 'done', count: 4, unit: '건',
-    what: '동아리 결과물을 바탕으로 직무 개선 과제를 제출했습니다.',
-    why: '시험장 성과를 공단 차원의 개선으로 이어가기 위해',
-    tools: ['생성형 AI 문서 작성'], result: '4건 제출 · 채택 ' + FILL },
-  { id: 's2', group: 'step', icon: '제', name: '제안 제도 활용', status: 'done', count: null, unit: '건',
-    what: '공단 제안 제도를 통해 아이디어를 제출했습니다.',
-    why: '연 1회 이상 제안이라는 동아리 목표에 따라',
-    tools: ['생성형 AI 문서 작성'], result: FILL },
-  { id: 's3', group: 'step', icon: '표', name: '표어 제출', status: 'done', count: null, unit: '건',
-    what: '공단 표어 공모에 동아리원이 참여했습니다.',
-    why: '', tools: ['생성형 AI 아이디어'], result: FILL },
-  { id: 's4', group: 'step', icon: '청', name: '청렴대회 참가', status: 'done', count: null, unit: '회',
-    what: '청렴대회에 동아리원이 참가했습니다.',
-    why: '', tools: [], result: FILL },
-];
-const GROUP = { gil: '길잡이 · 강서올인원', bal: '발자국 · 2채널 공유', step: '발걸음 · 공단 확산' };
-const STATUS = { done: '완료', doing: '추진중', todo: '작업 전' };
+// ===== 실행할 결과물 주소: url만 채우면 ▶ 버튼이 켜진다 =====
+// wide: PC에서 넓은 화면으로 먼저 보여 줄 결과물
+const ORIGIN = 'https://opikhg.github.io';
+const APPS = {
+  allinone: { title: '강서 올인원', url: '' },
+  seven:    { title: '7년 무사고 서류 자가진단', url: '' },
+  exam:     { title: '응시원서 번역본', url: ORIGIN + '/exam-form/', wide: true },
+  photo:    { title: '여권사진 규격 셀프 체크', url: ORIGIN + '/photo-self-check/' },
+  game:     { title: '면허 시험장 탐험', url: ORIGIN + '/license-game/' },
+};
+// 크게 볼 화면
+const SHOTS = {
+  allinone:  { src: 'img/allinone.png',        cap: '강서 올인원 화면' },
+  seven:     { src: 'img/sevenyear.png',       cap: '7년 무사고 서류 자가진단 화면' },
+  exam:      { src: 'img/examform.png',        cap: '응시원서 번역본 화면' },
+  photo:     { src: 'img/photocheck.png',      cap: '여권사진 규격 셀프 체크 화면' },
+  game:      { src: 'img/game.png',            cap: '면허 시험장 탐험 화면' },
+  nhome:     { src: 'img/notion-home.png',     cap: '강서시험장 업무 발자국 첫 화면' },
+  nnote:     { src: 'img/notion-note.png',     cap: '업무 참고 노트' },
+  ntimeline: { src: 'img/notion-timeline.png', cap: '업무 규정 변경 이력' },
+  ndispute:  { src: 'img/notion-dispute.png',  cap: '민원 분쟁 관련 근거' },
+  vlicense:  { src: 'img/visual-license.png',  cap: '1종 → 2종 면허 선택 안내' },
+  vmobile:   { src: 'img/visual-mobile.png',   cap: '모바일 운전면허증 방식 선택 안내' },
+};
+
 const $ = (s) => document.querySelector(s);
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const pill = (st) => `<span class="pill ${st}">${STATUS[st]}</span>`;
+const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname); // 내 컴퓨터에서 점검할 때만 주소를 바꿔 씀
+const liveUrl = (id) => (APPS[id] && APPS[id].url) || '';
+const frameUrl = (id) => LOCAL ? liveUrl(id).replace(ORIGIN, '') : liveUrl(id);
 
-// 한눈에 보기 칩
-document.querySelectorAll('.chips').forEach((box) => {
-  box.innerHTML = ITEMS.filter((i) => i.group === box.dataset.group)
-    .map((i) => `<button class="chip-btn" type="button" data-open="${i.id}"><span class="dot ${i.status}"></span>${esc(i.name)}</button>`).join('');
+// 주소가 아직 없는 결과물은 버튼을 '연결 예정'으로, 화면은 '크게 보기'로 바꾼다
+document.querySelectorAll('[data-run]').forEach((el) => {
+  if (liveUrl(el.dataset.run)) return;
+  el.classList.add('pending');
+  const lbl = el.querySelector('.lbl');
+  if (el.matches('.btn-run')) { el.disabled = true; if (lbl) lbl.textContent = (lbl.textContent.includes('7년') ? '7년 무사고 자가진단 ' : '') + '주소 연결 예정'; }
+  else if (el.matches('.phone')) { if (lbl) lbl.textContent = '화면 크게 보기'; el.setAttribute('aria-label', APPS[el.dataset.run].title + ' 화면 크게 보기'); }
 });
-const tally = (g) => { const a = ITEMS.filter((i) => i.group === g); return `${a.length}개 결과물 · 완료 ${a.filter((i) => i.status === 'done').length}`; };
-$('#cntG').textContent = tally('gil'); $('#cntF').textContent = tally('bal');
+document.querySelectorAll('[data-new]').forEach((a) => { const u = liveUrl(a.dataset.new); if (u) a.href = u; else a.hidden = true; });
 
-// 강서올인원 폰 타일
-$('#phoneGrid').innerHTML = ITEMS.filter((i) => i.group === 'gil').map((i) =>
-  `<button class="tile" type="button" data-open="${i.id}"><span class="ic">${esc(i.icon)}</span><span class="nm">${esc(i.name)}</span><span class="st"><span class="dot ${i.status}" style="width:7px;height:7px;border-radius:50%;display:inline-block"></span>${STATUS[i.status]}</span></button>`).join('')
-  + `<button class="tile" type="button" disabled style="border-style:dashed;cursor:default"><span class="ic" style="background:#eee;color:#999">+</span><span class="nm" style="color:#8a8f96">다음 도구</span><span class="st">추가 예정</span></button>`;
+// ---- 화면 상태는 주소 끝의 #run-이름 / #view-이름 으로 정한다 (뒤로 가기 버튼으로 닫힘) ----
+let trigger = null;
+const runner = $('#runner'), runBox = $('#runBox'), viewbox = $('#viewbox');
 
-// 발자국 카드
-$('#balCards').innerHTML = ITEMS.filter((i) => i.group === 'bal').map((i) =>
-  `<button class="card" type="button" data-open="${i.id}"><span class="top"><h3>${esc(i.name)}</h3>${pill(i.status)}</span><p>${esc(i.what)}</p><span class="more">자세히 보기 →</span></button>`).join('');
-
-// 발걸음 숫자
-$('#stats').innerHTML = ITEMS.filter((i) => i.group === 'step').map((i) =>
-  `<button class="stat" type="button" data-open="${i.id}"><span class="num">${i.count ?? '<span class="blank">□</span>'}<small>${i.unit}</small></span><span class="lb">${esc(i.name)}</span><span class="sub">눌러서 내역 보기</span></button>`).join('');
-
-// 상세 다이얼로그
-const dlg = $('#dlg');
-function openItem(id) {
-  const i = ITEMS.find((x) => x.id === id); if (!i) return;
-  $('#dlgGroup').textContent = GROUP[i.group];
-  $('#dlgPill').innerHTML = pill(i.status);
-  $('#dlgTitle').textContent = i.name;
-  $('#dlgWhat').textContent = i.what;
-  $('#dlgWhy').textContent = i.why || '—';
-  $('#dlgTools').innerHTML = i.tools.length ? i.tools.map((t) => `<span>${esc(t)}</span>`).join('') : '—';
-  $('#dlgResult').innerHTML = i.result;
-  if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+function openRunner(id) {
+  if (!runner.hidden && runner.dataset.id === id) return;
+  const app = APPS[id];
+  runner.dataset.id = id;
+  $('#runTitle').textContent = app.title;
+  $('#runNew').href = liveUrl(id);
+  runBox.innerHTML = '';
+  setWide(!!app.wide);
+  const f = document.createElement('iframe');
+  f.title = app.title; f.allow = 'camera; fullscreen';
+  $('#runLoading').hidden = false;
+  f.addEventListener('load', () => { $('#runLoading').hidden = true; try { f.contentWindow.focus(); } catch (e) {} });
+  f.src = frameUrl(id);
+  runBox.appendChild(f);
+  runner.hidden = false;
+  document.documentElement.classList.add('locked');
+  $('#runClose').focus();
 }
+function closeRunner() {
+  if (runner.hidden) return;
+  runner.hidden = true; runBox.innerHTML = ''; delete runner.dataset.id;
+}
+function setWide(on) {
+  runBox.classList.toggle('wide', on);
+  $('#runSize').setAttribute('aria-pressed', String(on));
+  $('#runSize').textContent = on ? '휴대폰 폭으로' : '넓게 보기';
+}
+function openView(id) {
+  const s = SHOTS[id];
+  $('#viewImg').src = s.src; $('#viewImg').alt = s.cap; $('#viewTitle').textContent = s.cap;
+  viewbox.hidden = false; $('#viewScroll').scrollTop = 0;
+  document.documentElement.classList.add('locked');
+  $('#viewClose').focus();
+}
+function closeView() { if (!viewbox.hidden) { viewbox.hidden = true; $('#viewImg').removeAttribute('src'); } }
+
+function sync() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  const run = h.startsWith('run-') && liveUrl(h.slice(4)) ? h.slice(4) : null;
+  const view = h.startsWith('view-') && SHOTS[h.slice(5)] ? h.slice(5) : null;
+  if (run) openRunner(run); else closeRunner();
+  if (view) openView(view); else closeView();
+  if (!run && !view) {
+    document.documentElement.classList.remove('locked');
+    if (trigger && document.contains(trigger)) { try { trigger.focus({ preventScroll: true }); } catch (e) {} }
+    trigger = null;
+  }
+}
+function closeOverlay() {
+  history.replaceState(null, '', location.pathname + location.search);
+  sync();
+}
+window.addEventListener('hashchange', sync);
+
 document.addEventListener('click', (e) => {
-  const b = e.target.closest('[data-open]');
-  if (b && !b.closest('.can-list')) { e.preventDefault(); openItem(b.dataset.open); }
+  const tabLink = e.target.closest('[data-tab]');
+  if (tabLink) selectTab(tabLink.dataset.tab);
+  const r = e.target.closest('[data-run]');
+  if (r) {
+    if (liveUrl(r.dataset.run)) { e.preventDefault(); trigger = r; location.hash = 'run-' + r.dataset.run; }
+    else if (r.dataset.view) { e.preventDefault(); trigger = r; location.hash = 'view-' + r.dataset.view; }
+    return;
+  }
+  const v = e.target.closest('[data-view]');
+  if (v) { e.preventDefault(); trigger = v; location.hash = 'view-' + v.dataset.view; }
 });
-$('#dlgClose').addEventListener('click', () => dlg.close());
-dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+$('#runClose').addEventListener('click', closeOverlay);
+$('#viewClose').addEventListener('click', closeOverlay);
+$('#viewScroll').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeOverlay(); });
+$('#runSize').addEventListener('click', () => setWide(!runBox.classList.contains('wide')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && (!runner.hidden || !viewbox.hidden)) closeOverlay(); });
 
-// 2채널 탭
-document.querySelectorAll('.seg button').forEach((btn) => btn.addEventListener('click', () => {
-  document.querySelectorAll('.seg button').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
-  $('#chMobile').hidden = btn.dataset.ch !== 'mobile';
-  $('#chPc').hidden = btn.dataset.ch !== 'pc';
-}));
+// ---- 직무 공간 둘러보기 탭 ----
+const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
+function selectTab(name) {
+  tabs.forEach((t) => {
+    const on = t.id === 't-' + name;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t.id.slice(2)));
+  t.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+    selectTab(n.id.slice(2)); n.focus();
+  });
+});
+selectTab('home');
 
-// 됩니다: 한 줄씩 차례로 불이 들어옴 (모든 줄은 처음부터 보임)
+// ---- 됩니다: 한 줄씩 차례로 불이 들어온다 (모든 줄은 처음부터 보임) ----
 const lines = [...document.querySelectorAll('#canList li:not(.final) a')];
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   let k = 0;
   setInterval(() => { lines.forEach((a, j) => a.classList.toggle('lit', j === k)); k = (k + 1) % lines.length; }, 1300);
 }
-</script>
 
+sync(); // #run-game 처럼 주소로 바로 들어온 경우
+</script>
 </body>
 </html>
