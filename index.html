@@ -78,12 +78,7 @@ ul, ol { padding: 0; list-style: none; }
 .nav a.chip:hover { color: var(--on-asphalt); background: var(--asphalt-2); }
 
 /* ---------- 버튼 ---------- */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 18px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
-.btn-run { background: var(--lane); color: var(--on-lane); }
-.btn-run:hover { filter: brightness(1.05); }
-.btn-run svg, .play svg { width: 12px; height: 14px; flex: none; fill: currentColor; }
-.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); font-weight: 500; }
-.btn-ghost:hover { border-color: var(--ink); }
+.play svg { width: 12px; height: 14px; flex: none; fill: currentColor; }
 
 /* ---------- 서막: 페르마 ---------- */
 .band { background: var(--asphalt); color: var(--on-asphalt); }
@@ -340,10 +335,6 @@ section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
             </button>
           </div>
         </div>
-        <div class="r-act">
-          <button class="btn btn-run" type="button" data-run="allinone"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">실행해 보기</span></button>
-          <a class="btn btn-ghost" data-new="allinone" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
-        </div>
         <ul class="r-desc">
           <li>시험장에 QR 코드가 늘어나 구분이 어렵고 정보도 제한적이었기에, 직원이 제작한 자료를 한곳에 담아 민원인이 더 쉽게 정보를 얻도록 구축. 홈페이지 형식보다 필요한 기능을 보기 쉽게 보여주는 쪽이 활용도가 높다고 판단</li>
           <li>주 출입구 등 시선이 모이는 곳에 QR 배너를 두어 접근성을 높이고, 접속한 민원인이 다른 유익한 정보도 함께 얻도록 함. 대기하며 절차를 미리 알거나 사전에 준비를 마칠 수 있어 민원 혼잡도 감소, QR 통합의 환경적 이점도 기대</li>
@@ -375,10 +366,6 @@ section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
             <span class="phone-cap">외국면허 응시원서 번역본</span>
           </div>
         </div>
-        <div class="r-act">
-          <button class="btn btn-run" type="button" data-run="seven"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">7년 무사고 자가진단 실행</span></button>
-          <button class="btn btn-run" type="button" data-run="exam"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">응시원서 번역본 실행</span></button>
-        </div>
         <ul class="r-desc">
           <li>서류 작성 시간이 길수록 시험장이 혼잡해지므로, 작성을 돕는 정보를 응시원서에 QR 코드로 덧인쇄하고 필기대 등에도 비치하여 적시에 제공. 작성 시간과 불필요한 절차, 민원 질의를 줄임</li>
           <li><b>7년 무사고 자가진단</b> · 절차에 증빙 서류가 필요해지면서 대상 자격과 필요 서류에 혼란이 크기 때문에 자가진단 형태로 안내 제공</li>
@@ -401,8 +388,6 @@ section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
           </div>
         </div>
         <div class="r-act">
-          <button class="btn btn-run" type="button" data-run="photo"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">실행해 보기</span></button>
-          <a class="btn btn-ghost" data-new="photo" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
           <span class="hint">사진은 기기 안에서만 분석되며, 어디에도 전송되거나 저장되지 않습니다.</span>
         </div>
         <ul class="r-desc">
@@ -427,8 +412,6 @@ section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
           </div>
         </div>
         <div class="r-act">
-          <button class="btn btn-run" type="button" data-run="game"><svg aria-hidden="true"><use href="#i-play"/></svg><span class="lbl">게임 해 보기</span></button>
-          <a class="btn btn-ghost" data-new="game" target="_blank" rel="noopener">새 창에서 열기 ↗</a>
           <span class="hint">휴대폰은 화면의 방향 버튼과 A 버튼, PC는 방향키와 스페이스바로 움직입니다.</span>
         </div>
         <ul class="r-desc">
@@ -676,8 +659,8 @@ section.block { padding-block: 60px 4px; scroll-margin-top: 60px; }
 // wide: PC에서 넓은 화면으로 먼저 보여 줄 결과물
 const ORIGIN = 'https://opikhg.github.io';
 const APPS = {
-  allinone: { title: '강서 올인원', url: ORIGIN + '/all-in-one/' },
-  seven:    { title: '7년 무사고 서류 자가진단', url: ORIGIN + '/all-in-one/7%EB%85%84%EB%AC%B4%EC%82%AC%EA%B3%A0_%EC%84%9C%EB%A5%98%EC%A0%90%EA%B2%80.html' },
+  allinone: { title: '강서 올인원', url: 'https://gs1guide.ssi0608.workers.dev/' },
+  seven:    { title: '7년 무사고 서류 자가진단', url: 'https://gs1guide.ssi0608.workers.dev/7%EB%85%84%EB%AC%B4%EC%82%AC%EA%B3%A0_%EC%84%9C%EB%A5%98%EC%A0%90%EA%B2%80.html' },
   exam:     { title: '응시원서 번역본', url: ORIGIN + '/exam-form/', wide: true },
   photo:    { title: '여권사진 규격 셀프 체크', url: ORIGIN + '/photo-self-check/' },
   game:     { title: '면허 시험장 탐험', url: ORIGIN + '/license-game/' },
@@ -702,7 +685,6 @@ const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname); // 내 컴
 const liveUrl = (id) => (APPS[id] && APPS[id].url) || '';
 const frameUrl = (id) => LOCAL ? liveUrl(id).replace(ORIGIN, '') : liveUrl(id);
 
-document.querySelectorAll('[data-new]').forEach((a) => { a.href = liveUrl(a.dataset.new); });
 
 // ---- 화면 상태는 주소 끝의 #run-이름 / #view-이름 으로 정한다 (뒤로 가기 버튼으로 닫힘) ----
 let trigger = null;
